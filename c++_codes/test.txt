@@ -1,0 +1,23 @@
+1 declaracion de las funciones que solicitaran los datos de entrada
+        nombre             tipo         descripcion
+    # n_quiz()           float      pide y retorna la nota del quiz del estudainte
+    # n_talleres()       float      pide y retorna la nota de talleres del estudiamte
+    # n_parcail()        float      pide y retorna la nota del parcial del estudiante
+
+2 el procedimiento a seguir es solicitar los datos por medio de un ciclo 
+  que pedira n veces los datos los datos segun el numero de estudiantes a evaluar.
+
+  A parte de las funciones las variabkes de salida seran las siguientes
+        nombre            tipo          descriocion
+    # n_definitiva        float       calcular la nota final basandoce en los datos 
+                                      solicitados en las funciones anteriores
+    # n_aprovados         int         ira sacando la cuenta de los estudiantes que 
+                                      aprovaron la materia
+    # n_reprobados        int         ira sacando la cuenta de los estudiantes que 
+                                      reprovaron la materia
+    # sum_prom            int         suma de todas las notas finales obtenidas,
+                                      esta variabke es necesaria para obtener el promedio 
+    # prom_notas          float       obtenemos el al dividir el valor final de la variable
+                                      sum_prom entre el numero total de estudiantes evaluados
+
+3 imprecion de los datos de salida de forma organizada

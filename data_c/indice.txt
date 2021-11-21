@@ -1,0 +1,52 @@
+ciencia de datos
+ hay muchos campos de uso en los negocios para la ciencia
+ de datos, incluido encontarr un mejor algoritmo de produccion
+ del precio de la vivienda para Zillow, encontar atributos
+ clave asociados con la calidad del vino y crear un sistema 
+ de recomendacion para aumentar la tasa de clics para Amazon
+
+ Al extraer informacion de datos aparentamente aleatorios, la cienciade
+ de datos normalmente implica en recopilar datos, limpiar datos,
+ realizar analisis de datos exploratorios, construir y evaluar modelos
+ de aprendizaje automatico y comunicar informacion a las partes interezadas.
+
+ La ciencia de datos es un campo multidiciplinario que unifica estadistica,
+ analisis de datos, aprendizaje automatico y sus metodos relacionados para
+ extraer conocimientos e ideas. 
+
+ el lenguaje a utilizar sera python 
+ python es el lenguaje mas popular y eficiente para la aplicion de la ciencia
+ de datos actualmente 
+
+ --librerias a utilizar
+ numpy
+ pandas
+ matplotlip
+ scikit-learn : biblioteca de aprendizaje automatico
+
+ objetivos
+ # predecir valores de origen mediante regrecion lineal
+ # identificar clases de iris con algoritmos de clasificacion
+ # clasificar grupos especificos
+ 
+
+archivos de practica
+-->np.py : utilizacion de la libreria numpy
+    
+    # np.array()
+    convierte a la variable que es asignado en un array 
+    en munpy
+
+    # .size
+    se utiliza para obtener el tamaño de un array
+
+    # .shape 
+    retorna la dimencion de una matriz en forma de 
+    tupla
+
+    # .reshape
+    define la dimencion de una matriz siendo esta especificada en una tupla
+
+    # .dtype
+    retorna el tipo de dato del array ya que los array son homogeneos 
+    es decir del mismo tipo
