@@ -208,19 +208,34 @@ int votaciones(int c) {
 //Funcion PRINCIPAL
 int main() {
   int eleccion=0, a=0, eleccion2=0;
-  while(eleccion0){
+  while(eleccion<3){
     menu();
     cout<<" ingrese el numero de su opcion: ";cin>>eleccion;
-    if (eleccion==){
-
-    }
-    else if (
-    {
-        /* code */
-    }
-    
-    
-    
+    if (eleccion==1){
+		datos(a)
+	}
+	else if (eleccion==2){
+		menu_busqueda();
+        cout<<" ingrese el numero de su opcion: ";cin>>eleccion2;
+        if (eleccion2==1){
+            op_1(a);
+        }
+        else if (eleccion2==2){
+            op_2(a);
+        }
+        else if (eleccion2==3){
+            op_3(a);
+        }
+        else if (eleccion2==4){
+            op_4(a);
+        }
+        else if (eleccion2==5){
+            op_5(a);
+        }
+        else{
+            eleccion=0;
+        }
+	}		
   }
   return 0;
 }
