@@ -47,7 +47,7 @@ void menu_busqueda(){
   cout<<"\n¿Que estadisticas desea ver?"<<endl;
   cout<<"Opciones:"<<endl;
   cout<<"1) Genero preferido por hombre, y genero preferido por mujeres"<<endl;
-  cout<<"2) Genero preferido por menores de 17 años"<<endl;
+  cout<<"2) Genero preferido por menores de 17 anios"<<endl;
   cout<<"3) promedio de edades de hombres y mujeres "<<endl;
   cout<<"4) Genero preferido en general para todo el publico encuestado  "<<endl;
   cout<<"5) Tabla de votaciones"<<endl;
@@ -88,8 +88,8 @@ void op_1(int cant){
             tendencia_hombres=generos[t];
         }
         // evaluamos para ,ujeres
-        if (auxA>cant_tend_hombres){
-            cant_tend_hombres=auxA;
+        if (auxB>cant_tend_mujeres){
+            cant_tend_mujeres=auxA;
             tendencia_mujeres=generos[t];
         }
     }
@@ -97,7 +97,7 @@ void op_1(int cant){
     cout<<" genro favorito entre las mujeres es : "<<tendencia_mujeres<<endl;
 }
 
-// generom preferido para menores de 17 años 
+// generom preferido para menores de 17 anio 
 void op_2(int cant){
     string generos[5]={"Accion","Comedia","Romance","Fantasia","Terror"};
 
@@ -120,7 +120,7 @@ void op_2(int cant){
             tendencia_menores=generos[t];
         }
     }
-    cout<<" el genero preferido entre personas menores de 17 años es: "<<tendencia_menores<<endl;
+    cout<<" el genero preferido entre personas menores de 17 anios es: "<<tendencia_menores<<endl;
 }
 
 // promedio de edades de hombres y mujeres
@@ -134,12 +134,12 @@ void op_3(int cant){
 
     for (int i=0; i<cant; i++){
             if (V[i].sexo==1){
-                sum_edad_hombres=V[i].edad;
-                cant_hombres+=1
+                sum_edad_hombres+=V[i].edad;
+                cant_hombres+=1;
             }
             else{
-               sum_edad_mujeres=V[i].edad;
-                cant_mujeres+=1
+               sum_edad_mujeres+=V[i].edad;
+                cant_mujeres+=1;
             }
     }
     // calculamos promedios 
@@ -208,55 +208,18 @@ int votaciones(int c) {
 //Funcion PRINCIPAL
 int main() {
   int eleccion=0, a=0, eleccion2=0;
-  while(eleccion<3){
+  while(eleccion0){
     menu();
     cout<<" ingrese el numero de su opcion: ";cin>>eleccion;
-    switch(eleccion){
-      case 1:
-      do{
-        cout<<"\nÂ¿Cuantos usuarios desea encuestar?: ";
-        cin>>a;
-      }while(a<0 || a>Max);
-      datos(a);
-      break;
-      //----------------------------------------------------------------
-      case 2:
-      while(eleccion2<7){
-        menu_busqueda();
-        cout<<" ingrese el numero de su opcion: ";cin>>eleccion2;
-        switch(eleccion2){
-          case 1:
-            op_1(a);
-          break;
-          case 2:
-            op_2(a);
-          break;
-          case 3:
-            op_3(a);
-          break;
-          case 4:
-            op_4(a);
-          break;
-          case 5:
-            votaciones(a);
-          break;
-          case 6:
-          break;
-          default:
-          cout << "\n\n*** ERROR EN OPCION ***\n\n";
-          eleccion2='0';
-          break;
-        }
-      }
-      break;
-      //-----------------------------------------------------------------
-      case 3:
-      break;
-      default:
-      cout << "\n\n*** ERROR EN OPCION ***\n\n";
-      eleccion='0';
-      break;
+    if (eleccion==){
+
     }
+    else if (
+    {
+        /* code */
+    }
+    
+    
     
   }
   return 0;
