@@ -72,11 +72,14 @@ void op_1(int cant){
         auxB=0;
         for (int i=0; i<cant; i++){
             if (V[i].sexo==1){
-                auxA+=1;
-
+                if(V[i].genero_preferido==t){
+                     auxA+=1;
+                }
             }
             else{
-                auxB+=1;
+                if(V[i].genero_preferido==t){
+                     auxB+=1;
+                }
             }
         }
         // evaluamos para los hombres
@@ -92,6 +95,84 @@ void op_1(int cant){
     }
     cout<<" genro favorito entre los hombres es : "<<tendencia_hombres<<endl;
     cout<<" genro favorito entre las mujeres es : "<<tendencia_mujeres<<endl;
+}
+
+// generom preferido para menores de 17 años 
+void op_2(int cant){
+    string generos[5]={"Accion","Comedia","Romance","Fantasia","Terror"};
+
+    // variables auxiliares 
+    string tendencia_menores;
+    int cant_tend_menores=0;
+    int aux;
+
+        for (int t=1; t<=5; t++){
+        aux=0;
+        for (int i=0; i<cant; i++){
+            if (V[i].edad<=17){
+                if(V[i].genero_preferido==t){
+                     aux+=1;
+                }
+            }
+        }
+        if (aux>cant_tend_menores){
+            cant_tend_menores=aux;
+            tendencia_menores=generos[t];
+        }
+    }
+    cout<<" el genero preferido entre personas menores de 17 años es: "<<tendencia_menores<<endl;
+}
+
+// promedio de edades de hombres y mujeres
+void op_3(int cant){
+        // sumatorias 
+    int sum_edad_hombres=0, sum_edad_mujeres=0;
+        // cantidades
+    int cant_hombres=0, cant_mujeres=0; 
+        // promedios
+    float prom_edad_hombres, prom_edad_mujeres;
+
+    for (int i=0; i<cant; i++){
+            if (V[i].sexo==1){
+                sum_edad_hombres=V[i].edad;
+                cant_hombres+=1
+            }
+            else{
+               sum_edad_mujeres=V[i].edad;
+                cant_mujeres+=1
+            }
+    }
+    // calculamos promedios 
+    prom_edad_hombres=sum_edad_hombres/cant_hombres;
+    cout<<"\n el promedio de las edades de los hombres es de : "<<prom_edad_hombres;
+
+    prom_edad_mujeres=sum_edad_mujeres/cant_mujeres;
+    cout<<"\n el promedio de edad de las mujeres ed de : "<<prom_edad_mujeres;
+}
+
+// Genero preferido en general para todo el publico encuestado 
+void op_4(int cant){
+
+    string generos[5]={"Accion","Comedia","Romance","Fantasia","Terror"};
+
+    // variables auxiliares 
+    string tendencia_general;
+    int cant_tend_general=0;
+    int aux;
+
+    for (int t=1; t<=5; t++){
+        aux=0;
+        for (int i=0; i<cant; i++){
+            if(V[i].genero_preferido==t){
+                     aux+=1;
+            }
+        }
+        if (aux>cant_tend_general){
+            cant_tend_general=aux;
+            tendencia_general=generos[t];
+        }
+    }
+    cout<<"\n el genero preferido entre todo el publico encuestado fue : "<<tendencia_general;
 }
 
 
@@ -148,10 +229,13 @@ int main() {
             op_1(a);
           break;
           case 2:
+            op_2(a);
           break;
           case 3:
+            op_3(a);
           break;
           case 4:
+            op_4(a);
           break;
           case 5:
             votaciones(a);
