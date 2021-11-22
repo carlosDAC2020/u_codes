@@ -55,7 +55,44 @@ void menu_busqueda(){
 }
 
 // genero preferido para los hombre y genero preferido para las mujeres 
+void op_1(int cant){
+    string generos[5]={"Accion","Comedia","Romance","Fantasia","Terror"};
 
+    // variables auxiliares para hombres 
+    string tendencia_hombres;
+    int cant_tend_hombres=0;
+    int auxA;
+    // variables auxiliares para mujeres
+    string tendencia_mujeres;
+    int cant_tend_mujeres=0;
+    int auxB;
+
+    for (int t=1; t<=5; t++){
+        auxA=0;
+        auxB=0;
+        for (int i=0; i<cant; i++){
+            if (V[i].sexo==1){
+                auxA+=1;
+
+            }
+            else{
+                auxB+=1;
+            }
+        }
+        // evaluamos para los hombres
+        if (auxA>cant_tend_hombres){
+            cant_tend_hombres=auxA;
+            tendencia_hombres=generos[t];
+        }
+        // evaluamos para ,ujeres
+        if (auxA>cant_tend_hombres){
+            cant_tend_hombres=auxA;
+            tendencia_mujeres=generos[t];
+        }
+    }
+    cout<<" genro favorito entre los hombres es : "<<tendencia_hombres<<endl;
+    cout<<" genro favorito entre las mujeres es : "<<tendencia_mujeres<<endl;
+}
 
 
 //Tabla de votaciones
@@ -108,6 +145,7 @@ int main() {
         cout<<" ingrese el numero de su opcion: ";cin>>eleccion2;
         switch(eleccion2){
           case 1:
+            op_1(a);
           break;
           case 2:
           break;
