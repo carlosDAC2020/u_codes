@@ -20,19 +20,6 @@ void menu(){
   cout<<"3) Salir del programa"<<endl;
 }
 
-//Menu de busqueda
-void menu_busqueda(){
-  cout<<"\n¿Que estadisticas desea ver?"<<endl;
-  cout<<"Opciones:"<<endl;
-  cout<<"1) Tendencia entre hombre y mujeres"<<endl;
-  cout<<"2) Media y mediana entre hombres y mujeres"<<endl;
-  cout<<"3) Genero preferido por hombre, y genero preferido por mujeres"<<endl;
-  cout<<"4) Genero preferido por menores de 17 años"<<endl;
-  cout<<"5) Tabla de votaciones"<<endl;
-  cout<<"6) Todas las estadisticas"<<endl;
-  cout<<"7) Regresar al menu principal"<<endl;
-}
-
 //Funcion de DATOS
 void datos(int b){
   for (int i=0; i<b; i++) {
@@ -54,25 +41,22 @@ void datos(int b){
   }
 }
 
-// tendencia hombres
-void tendencia_hombres_y_mujeres(int cant){
-    string tend[5]={"Accion","Comedia","Romance","Fantasia","Terror"}
-    for(int i=1,i<=5,i++){
-        
-    }
+
+//Menu de busqueda
+void menu_busqueda(){
+  cout<<"\n¿Que estadisticas desea ver?"<<endl;
+  cout<<"Opciones:"<<endl;
+  cout<<"1) Genero preferido por hombre, y genero preferido por mujeres"<<endl;
+  cout<<"2) Genero preferido por menores de 17 años"<<endl;
+  cout<<"3) promedio de edades de hombres y mujeres "<<endl;
+  cout<<"4) Genero preferido en general para todo el publico encuestado  "<<endl;
+  cout<<"5) Tabla de votaciones"<<endl;
+  cout<<"6) Regresar al menu principal"<<endl;
 }
 
+// genero preferido para los hombre y genero preferido para las mujeres 
 
-//Media
-float media(int R) {
-  int suma=0, promedio=0;
-  for (int j=0; j<R; j++) {
-    suma=suma+V[j].genero_preferido;
-  }
-  promedio=suma/R;
-  cout<<"La media es: "<<promedio<<endl;
-  return 0;
-}
+
 
 //Tabla de votaciones
 int votaciones(int c) {
@@ -94,6 +78,7 @@ int votaciones(int c) {
       terror=terror+1;
     }
   }
+  cout<<"\n tabla de votaciones ";
   cout<<"\nAccion: "<<accion<<endl;
   cout<<"Comedia: "<<comedia<<endl;
   cout<<"Romance: "<<romance<<endl;
@@ -125,7 +110,6 @@ int main() {
           case 1:
           break;
           case 2:
-            media(a);
           break;
           case 3:
           break;
@@ -135,8 +119,6 @@ int main() {
             votaciones(a);
           break;
           case 6:
-          break;
-          case 7:
           break;
           default:
           cout << "\n\n*** ERROR EN OPCION ***\n\n";
