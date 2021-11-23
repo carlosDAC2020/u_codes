@@ -207,12 +207,13 @@ int votaciones(int c) {
 
 //Funcion PRINCIPAL
 int main() {
-  int eleccion=0, a=0, eleccion2=0;
+  int eleccion, a, eleccion2;
   while(eleccion<3){
     menu();
     cout<<" ingrese el numero de su opcion: ";cin>>eleccion;
     if (eleccion==1){
-		datos(a)
+        cout<<"\n cuantss personas va a encuestar ?:";cin>>a;
+		datos(a);
 	}
 	else if (eleccion==2){
 		menu_busqueda();
@@ -230,7 +231,7 @@ int main() {
             op_4(a);
         }
         else if (eleccion2==5){
-            op_5(a);
+            votaciones(a);
         }
         else{
             eleccion=0;
