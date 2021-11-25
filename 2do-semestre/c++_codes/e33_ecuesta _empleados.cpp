@@ -6,32 +6,32 @@ const int n=500;
 struct persona {
   string nombre;
   string cedula;
-  char sexo;
-  char tipo;
+  int sexo;
+  int tipo;
   double salario;
 };
 
-persona list_empleados[n]
+persona list_empleados[n];
 
 
     // entrada de datos
 void ingreso_datos(int x){
     for (int i=0; i < x; i++){
-        cout<<" empleado "<<i+1<<endl;
+        cout<<"\n empleado "<<i+1<<endl;
         cout<<" nombre: ";cin>>list_empleados[i].nombre;
 
         cout<<" cedula: ";cin>>list_empleados[i].cedula;
 
-        cout<<" sexo (f o m): ";cin>>list_empleados[i].sexo;
+        cout<<" sexo \n 1->femenino\n 2->masculino \n ingrese el numero correspondiente: ";cin>>list_empleados[i].sexo;
         // validacion del ingreso del sexo 
-        while (list_empleados[i].sexo!="f" || list_empleados[i].sexo="F" || list_empleados[i].sexo="m" || list_empleados[i].sexo="M"){
+        while (list_empleados[i].sexo<1 || list_empleados[i].sexo>2){
             cout<<" valor ingresado erroneamnete \n";
             cout<<" ingrese su sexo nuevamente: ";cin>>list_empleados[i].sexo;
         }
         
-        cout<<" tipo (c o s): ";cin>>list_empleados[i].tipo;
+        cout<<" tipo de contrato \n 1-> C\n 2-> S \n ingrese el numero correspondiente: ";cin>>list_empleados[i].tipo;
         // validacion del ingreso del tipo 
-        while (list_empleados[i].tipo!="c" || list_empleados[i].tipo="C" || list_empleados[i].tipo="s" || list_empleados[i].tipo="M}S"){
+        while (list_empleados[i].tipo<1 || list_empleados[i].tipo>2){
             cout<<" valor ingresado erroneamnete \n";
             cout<<" ingrese su tipo nuevamente: ";cin>>list_empleados[i].tipo;
         }
@@ -47,31 +47,47 @@ void estadisticas(int x){
         // cantidades de cada tipo de empleado
     int cant_t_c=0, cant_t_s=0;
         // gannan dos milones o mas 
-    int cant_ganan_2M=0
+    int cant_ganan_2M=0;
 
     for(int i=0; i<x; i++){
         // identificamos hombres y mujeres
-        if(list_empleados[i].sexo=="f" || list_empleados[i].sexo=="F"){
+        if(list_empleados[i].sexo==1){
             cant_mujeres+=1;
         }
         else{
             cant_hombres+=1;
         }
 
+        // identificamos los tipos de empleados 
+        if(list_empleados[i].tipo==1){
+            cant_t_c+=1;
+        }
+        else{
+            cant_t_s+=1;
+        }
+
+        // indentificamos a personas que ganen mas de 2 millones 
+        if (list_empleados[i].salario>=2000000){
+            cant_ganan_2M+=1;
+        }
+        
     }
-
-
     // porcentage de hombres
+    cout<<"\n el procentaje de hombres es de :"<<(cant_hombres*100)/x<<endl;
     // porcentaje de mujeres 
+    cout<<" el procentaje de mujeres es de :"<<(cant_mujeres*100)/x<<endl;
     // cantidad de emplesdos con contrato tipo c
+    cout<<" la cantidad de empleados con contrato tipo c es de: "<<cant_t_c<<endl;
     // cantidad de empleados por prestasion de servicios tipo s
+    cout<<" la cantidad de emplerados por prestacion de servicios tipo s es de: "<<cant_t_s<<endl;
     // cantidad de  personas con ingresos mayores a 2 millones 
+    cout<<" cantidad de empleados que ganan mas de 2 millones: "<<cant_ganan_2M<<endl;
 
 }
 
     // mostrar lista de encuestados 
 void list_encuestados(int x){
-
+    
 }
 
 int main() {
@@ -79,5 +95,8 @@ int main() {
   cout<<" cantidad de personas a encuestar: ";cin>>cant;
 
   ingreso_datos(cant);
+
+  estadisticas(cant);
+
   return 0;
 }
