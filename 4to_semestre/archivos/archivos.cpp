@@ -60,15 +60,17 @@ int leer_asiganr(){
         getline(stream, auxiliar, ';');
 		saldo_aux = atof(auxiliar.c_str());
 
-        contador+=1;
+        
 
         // agregamos los datos a la estructura de lista de clientes para usarlos 
-        list_clientes[contador-1].nombre=nombre_aux;
-        list_clientes[contador-1].apellido=apellido_aux;
-        list_clientes[contador-1].cedula=cedula_aux;
-        list_clientes[contador-1].num_cuenta=num_cuenta_aux;
-        list_clientes[contador-1].clave=clave_aux;
-        list_clientes[contador-1].saldo=saldo_aux;
+        list_clientes[contador].nombre=nombre_aux;
+        list_clientes[contador].apellido=apellido_aux;
+        list_clientes[contador].cedula=cedula_aux;
+        list_clientes[contador].num_cuenta=num_cuenta_aux;
+        list_clientes[contador].clave=clave_aux;
+        list_clientes[contador].saldo=saldo_aux;
+
+        contador+=1;
     }
     archivo.close();
     return contador;
