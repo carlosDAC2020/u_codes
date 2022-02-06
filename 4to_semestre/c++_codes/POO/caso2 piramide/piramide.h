@@ -3,12 +3,11 @@
 
 class Piramide{
   public:
-  Piramide( float=0, float=1);
-  void imprime();
-  void getnum(int);
-  void getden(int);
-  Racional suma(Racional &);
+    Piramide( float=0, float=1);
+    void imprime();
+    void getaltura(float);
+    void getlasdo_base(float);
   private:
-  float altura,lado_base;
+    float altura,lado_base;
 };
 #endif // RACIONAL_H
