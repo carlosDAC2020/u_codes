@@ -3,11 +3,16 @@
 
 class Piramide{
   public:
-    Piramide( float=0, float=1);
+    Piramide();
     void imprime();
-    void getaltura(float);
-    void getlasdo_base(float);
+    void setaltura(float);
+    void setlado(float);
+    float base();
+    float area_triangulos();
+    float area_lateral(float);
+    float area_total(float,float);
+    float volumen(float);
   private:
-    float altura,lado_base;
+    float altura,lado;
 };
 #endif // RACIONAL_H
