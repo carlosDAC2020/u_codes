@@ -19,45 +19,27 @@ void ingreso_datos(Piramide &a){
 }
 
 void mostrar_atributos(Piramide &a){
-    /* hallaremos y mostramos los atributos del objeto piramide
-    q pasamos como parametro a la funcion por medio de los emtodos de este*/
-
-    // declaramos variables auxiliares para los atributos
-    float base, area_rectangular, area_lateral, area_total, volumen;
-
-    // area de la base 
-    base=a.base();
-    // area rectangular
-    area_rectangular=a.area_triangulos();
-    // area lateral
-    area_lateral=a.area_lateral(area_rectangular);
-    // area total
-    area_total=a.area_total(base,area_lateral);
-    //volumen
-    volumen=a.volumen(base);
-
-    // imprimimos atributos 
-    a.imprime();
-    cout<<" base:"<<base<<"\n";
-    cout<<" area  rectangular :"<<area_rectangular<<"\n";
-    cout<<" area lateral :"<<area_lateral<<"\n";
-    cout<<" area total :"<<area_total<<"\n";
-    cout<<" volumen :"<<volumen<<"\n";
+    cout<<" atributos de la piramide \n";
+    cout<<" lado: "<<a.getlado()<<endl;
+    cout<<" altura: "<<a.getaltura()<<endl;
 }
+
+
 
 int main(){
     // cramos el objeto
     Piramide p1;
-    int go=3,op;
-    while(go==3){
-      cout<<" piramide rectangular \n";
+    int go=4,op;
+    while(go==4){
+      cout<<" \n\n piramide rectangular \n";
       cout<<" que desea hacer? \n";
       cout<<" 1-- ingreso de datos de la piramide \n";
-      cout<<" 2-- mostrar atributos  de la piramide \n";
-      cout<<" 3-- salir del programa  \n";
+      cout<<" 2-- mostrar atributos  del objeto \n";
+      cout<<" 3-- imprimir datos del objeto  \n";
+      cout<<" 4-- salir del programa  \n";
 
       cout<<" ingrese su opcion: ";cin>>op;
-      while(op<1 or op>3){
+      while(op<1 or op>4){
         cout<<" opcion ingresado imvalida \n";
         cout<<" ingrese su opcion nuevamente: ";cin>>op;
       }
@@ -69,8 +51,11 @@ int main(){
       else if(op==2){
         mostrar_atributos(p1);
       }
+      else if(op==3){
+        p1.imprime();
+      }
       else{
-        go=op+1;
+        go=op;
       }
     }
       
