@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<h2>Books</h2>
+<a href="/document" class="btn btn-success float-right">Add New Book</a>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">tilte</th>
+        <th scope="col"># pages</th>
+        <th scope="col">category</th>
+        <th scope="col">authors</th>
+        <th scope="col">Edit | Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for line in value %}
+    <tr>
+        <th scope="row">{{line[0]}}</th>
+        <td>{{line[1]}}</td>
+        <td>{{line[2]}}</td>
+        <td>{{line[3]}}</td>
+        <td>{{line[4]}}</td>
+        <td>
+            <a href="/document_update/{{line[0]}}" class="btn btn-warning btn-xs">Edit</a>
+            <a href="/document_delete/{{line[0]}}" class="btn btn-danger btn-xs" onclick=" confirm('Are You Sure To Delete ?')">Delete</a>
+        </td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
