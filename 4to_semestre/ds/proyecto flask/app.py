@@ -12,8 +12,6 @@ docs= []
 def index():
     return render_template('index.html')
 
-
-
 @app.route('/people')
 def people():
     data = [(i.id_person, i.name, i.last_name) for i in peopel]
