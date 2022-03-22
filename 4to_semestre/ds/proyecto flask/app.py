@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
-from logic.clases import Person, Document
+from logic.person import Person
+from logic.document import Document
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
