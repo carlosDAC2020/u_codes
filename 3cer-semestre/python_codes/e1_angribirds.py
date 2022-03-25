@@ -22,27 +22,27 @@ while pregunta=="si" :
     
     # opcion 1 
   if opcion==1:
-  		print("\n ingresa vafios valores de velocidad inicial para probarlos \n")
-  		# pedimos al usuario un numero de intentoa 
-  		intentos= int(input("ingresar el numero de inyentos a realizar: "))
-  		
-  		for i in range (1,intentos+1):
-  		    print("intento",i)
-  		    # pedimos el vakor de la velocidad 
-  		    velocidad_inicial=float(input("ingresa la belocidad del Angry Bird: "))
-  		    
-  		# procedemoa a encontra la disyancia alcanzada usando la formial porporcionada 
-  		    distancia_alcanzada=((velocidad_inicial**2)/gravedad)*math.sin(2*angulo)
-  		    
-  		    print("la distancia alcanzada fue de",distancia_alcanzada,"m")
-  		# evaluamos dependiendo  el resultado de la distancia alcanzada si llega , supera o no el objetivo 
-  		    if distancia_alcanzada == distancia_objetivo:
-  		        print("felicidades ha alcanzado el objetivo")
-  		    elif distancia_alcanzada < distancia_objetivo :
-  		        print("no sobrepaso el objetivo \nle faltaron ",distancia_objetivo - distancia_alcanzada,"metros")
-  		    else:
-  		        print("ha sobrepasado el objetivo por ",distancia_alcanzada - distancia_objetivo,"metros")
-  
+    print("\n ingresa vafios valores de velocidad inicial para probarlos \n")
+    # pedimos al usuario un numero de intentoa 
+    intentos= int(input("ingresar el numero de inyentos a realizar: "))
+    
+    for i in range (1,intentos+1):
+      print("intento",i)
+      # pedimos el vakor de la velocidad 
+      velocidad_inicial=float(input("ingresa la belocidad del Angry Bird: "))
+      
+  # procedemoa a encontra la disyancia alcanzada usando la formial porporcionada 
+      distancia_alcanzada=((velocidad_inicial**2)/gravedad)*math.sin(2*angulo)
+      
+      print("la distancia alcanzada fue de",distancia_alcanzada,"m")
+  # evaluamos dependiendo  el resultado de la distancia alcanzada si llega , supera o no el objetivo 
+      if distancia_alcanzada == distancia_objetivo:
+          print("felicidades ha alcanzado el objetivo")
+      elif distancia_alcanzada < distancia_objetivo :
+          print("no sobrepaso el objetivo \nle faltaron ",distancia_objetivo - distancia_alcanzada,"metros")
+      else:
+          print("ha sobrepasado el objetivo por ",distancia_alcanzada - distancia_objetivo,"metros")
+
   # opcion 2 		        
   else:
     print("\n evaluemos un rango de valoresn para probar el angulo")
