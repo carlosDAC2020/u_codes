@@ -1,4 +1,6 @@
 #include "operario.h"
+#include <stdlib.h>
+#include <time.h>
 
 // metodos de la clase 
 operario::operario(int d)
