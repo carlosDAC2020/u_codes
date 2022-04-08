@@ -13,6 +13,7 @@ vector <servicios> list_servicios(100);
 // variables auxilioares para señalar las cantidades de cada tipo de empleado
 int cant_academicos=0, cant_administradores=0, cant_servicios=0;
 
+// menu de opciones del programa 
 int menu(){
     int op;
     cout << "\n\t ";
