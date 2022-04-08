@@ -1,6 +1,5 @@
 #include "empleado.h"
-string mess[] = {" ","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"};
-int dias[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
 
 empleado::empleado(string ced, string nom, string apell, int fn[], long bas)
 {
@@ -46,7 +45,7 @@ void empleado::imprimir() const
   cout<<" Nombre:"<<nombre<<endl;
   cout<<" Apellido:"<<apellido<<endl;
   cout<<" Fecha de nacimiento:"<< fechaN[0] << "/" << mess[fechaN[1]] << "/" << fechaN[2]<<endl;
-  cout<<" Sueldo basico:"<<basico<<endl;
+  cout<<" Sueldo basico:"<<basico<<"$"<<endl;
 }
 
 long empleado::neto() const
@@ -56,9 +55,45 @@ long empleado::neto() const
 
 istream &operator>>(istream &cin, empleado &a)
 {
+  cout<<"       ingreso de datos del empleado \n";
+  cout<<" # Cedula:";cin>>a.cedula;
+  cout<<" # Nombre:";cin>>a.nombre;
+  cout<<" # Apellido:";cin>>a.apellido;
+
+  cout<<"     # FECHA DE NACIMIENTO \n";
+  int res;
+  do{
+    cout<<" dia:";cin>>a.fechaN[0];
+    cout<<" mes:";cin>>a.fechaN[1];
+    cout<<" anio:";cin>>a.fechaN[2];
+    validarFecha(a.fechaN);
+    cout<<a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
+    cout<<" esta de acuerdo con la fecha ingresada?\n 1=si \n 2=no\n ingrse su opcion:";cin>>res;
+  } 
+  while (res!=1);
   
+  do{
+    cout<<" # Salario Basico:";cin>>a.basico;
+    if (a.basico<0){
+      cout<<" ingresaste un salario no valid!! \n";
+    }
+  } 
+  while (a.basico<0);
+  
+  
+  return cin;
 }
 
+ostream &operator<<(ostream &cout, const empleado &a){
+  cout<<"       datos del empleado \n";
+  cout<<" Documento:"<< a.cedula <<endl;
+  cout<<" Nombre:"<<a.nombre<<endl;
+  cout<<" Apellido:"<<a.apellido<<endl;
+  cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
+  cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
+
+  return cout;
+}
 
 void validarFecha(int F[])
 {
