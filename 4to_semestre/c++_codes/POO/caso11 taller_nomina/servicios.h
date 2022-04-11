@@ -9,7 +9,7 @@ class servicios: public empleado
     friend void imprimir_lista_servicios (int, vector<servicios> &);
     friend long nomina_total_servicios (int, vector<servicios> &);
   public:
-    servicios(string = " ", string = " ", string = " ", int[] = 0, long = 0, long=0.0);
+    servicios(string = " ", string = " ", string = " ", /*int[] = 0*/ long = 0, long=0.0);
     ~servicios();
     void PonHorasExtras (long);
     long baseHorasExtras() const;

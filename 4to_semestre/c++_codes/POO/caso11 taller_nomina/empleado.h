@@ -6,11 +6,11 @@ using namespace std;
 #define Aini 1900
 #define Afin 2022
 
-void validarFecha(int F[]);
-int anioBisiesto(int verificaAnio);
+//void validarFecha(int F[]);
+//int anioBisiesto(int verificaAnio);
 
-string mess[] = {" ","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"};
-int dias[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+//string mess[] = {" ","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"};
+//int dias[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 class empleado 
 {
@@ -22,7 +22,7 @@ class empleado
     void ponCedula(string);
     void ponNombre(string);
     void ponApellido(string);
-    void ponFechaNac(int[]);
+    //void ponFechaNac(int[]);
     void salarioBasico(long);
     virtual void imprimir() const;
     virtual long neto() const;
@@ -30,7 +30,7 @@ class empleado
     string cedula;
     string nombre;
     string apellido;
-    int fechaN[3];
+    //int fechaN[3];
     long basico;
 };
 

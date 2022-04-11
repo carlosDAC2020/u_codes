@@ -9,7 +9,7 @@ class administrativo: public empleado
     friend void imprimir_lista_administrativo (int, vector<administrativo> &);
     friend long nomina_total_administrativos (int, vector<administrativo> &);
   public:
-    administrativo(string = " ", string = " ", string = " ", int[] = 0, long = 0 , int=0);
+    administrativo(string = " ", string = " ", string = " ", /*int[] = 0*/ long = 0 , int=0);
     ~administrativo();
     void PonCargo (int);
     long boni_cargo() const;

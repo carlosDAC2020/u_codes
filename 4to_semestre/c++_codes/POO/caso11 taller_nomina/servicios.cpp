@@ -1,10 +1,10 @@
 #include "servicios.h"
 
-servicios::servicios(string ced, string nom, string apell, int fn[], long bas, long he){
+servicios::servicios(string ced, string nom, string apell, /*int fn[]*/ long bas, long he){
     ponCedula(ced);
     ponNombre(nom);
     ponApellido(apell);
-    ponFechaNac(fn);
+    //ponFechaNac(fn);
     salarioBasico(bas); 
     PonHorasExtras(he);
 }
@@ -35,6 +35,7 @@ istream &operator>>(istream &cin, servicios &a){
     cout<<" # Nombre:";cin>>a.nombre;
     cout<<" # Apellido:";cin>>a.apellido;
 
+    /*
     cout<<"     # FECHA DE NACIMIENTO \n";
     int res;
     do{
@@ -46,7 +47,7 @@ istream &operator>>(istream &cin, servicios &a){
         cout<<" esta de acuerdo con la fecha ingresada?\n 1=si \n 2=no\n ingrse su opcion:";cin>>res;
     } 
     while (res!=1);
-    
+    */
     do{
         cout<<" # Salario Basico:";cin>>a.basico;
         if (a.basico<0){
@@ -69,7 +70,7 @@ ostream &operator<<(ostream &cout, const servicios &a){
     cout<<" Documento:"<< a.cedula <<endl;
     cout<<" Nombre:"<<a.nombre<<endl;
     cout<<" Apellido:"<<a.apellido<<endl;
-    cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
+    //cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
     cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
     cout<<" horas extras:"<<a.horas_extra<<endl;
 

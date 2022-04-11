@@ -1,10 +1,10 @@
 #include "administrativo.h"
 
-administrativo::administrativo(string ced, string nom, string  apell, int  fn[], long bas , int carg){
+administrativo::administrativo(string ced, string nom, string  apell, /*int  fn[]*/ long bas , int carg){
   ponCedula(ced);
   ponNombre(nom);
   ponApellido(apell);
-  ponFechaNac(fn);
+  //ponFechaNac(fn);
   salarioBasico(bas); 
   PonCargo(carg);
 }
@@ -63,6 +63,7 @@ istream &operator>>(istream &cin, administrativo &a){
     cout<<" # Nombre:";cin>>a.nombre;
     cout<<" # Apellido:";cin>>a.apellido;
 
+    /*
     cout<<"     # FECHA DE NACIMIENTO \n";
     int res;
     do{
@@ -74,7 +75,7 @@ istream &operator>>(istream &cin, administrativo &a){
         cout<<" esta de acuerdo con la fecha ingresada?\n 1=si \n 2=no\n ingrse su opcion:";cin>>res;
     } 
     while (res!=1);
-    
+    */
     do{
         cout<<" # Salario Basico:";cin>>a.basico;
         if (a.basico<0){
@@ -104,7 +105,7 @@ ostream &operator<<(ostream &cout, const administrativo &a){
     cout<<" Documento:"<< a.cedula <<endl;
     cout<<" Nombre:"<<a.nombre<<endl;
     cout<<" Apellido:"<<a.apellido<<endl;
-    cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
+    //cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
     cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
     cout<<" cargo:";
     switch (a.cargo)

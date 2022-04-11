@@ -6,7 +6,7 @@ empleado::empleado(string ced, string nom, string apell, int fn[], long bas)
   ponCedula(ced);
   ponNombre(nom);
   ponApellido(apell);
-  ponFechaNac(fn);
+  //ponFechaNac(fn);
   salarioBasico(bas); 
 }
 empleado::~empleado()
@@ -27,11 +27,13 @@ void empleado::ponApellido(string apell)
   apellido = apell;
 }
 
+/*
 void empleado::ponFechaNac(int fn[])
 {
   validarFecha(fn);
   cout << fn[0] << "/" << mess[fn[1]] << "/" << fn[2];
 }
+*/
 
 void empleado::salarioBasico(long bas)
 {
@@ -44,7 +46,7 @@ void empleado::imprimir() const
   cout<<" Documento:"<< cedula <<endl;
   cout<<" Nombre:"<<nombre<<endl;
   cout<<" Apellido:"<<apellido<<endl;
-  cout<<" Fecha de nacimiento:"<< fechaN[0] << "/" << mess[fechaN[1]] << "/" << fechaN[2]<<endl;
+  //cout<<" Fecha de nacimiento:"<< fechaN[0] << "/" << mess[fechaN[1]] << "/" << fechaN[2]<<endl;
   cout<<" Sueldo basico:"<<basico<<"$"<<endl;
 }
 
@@ -60,6 +62,7 @@ istream &operator>>(istream &cin, empleado &a)
   cout<<" # Nombre:";cin>>a.nombre;
   cout<<" # Apellido:";cin>>a.apellido;
 
+  /*
   cout<<"     # FECHA DE NACIMIENTO \n";
   int res;
   do{
@@ -71,7 +74,8 @@ istream &operator>>(istream &cin, empleado &a)
     cout<<" esta de acuerdo con la fecha ingresada?\n 1=si \n 2=no\n ingrse su opcion:";cin>>res;
   } 
   while (res!=1);
-  
+  */
+
   do{
     cout<<" # Salario Basico:";cin>>a.basico;
     if (a.basico<0){
@@ -89,12 +93,13 @@ ostream &operator<<(ostream &cout, const empleado &a){
   cout<<" Documento:"<< a.cedula <<endl;
   cout<<" Nombre:"<<a.nombre<<endl;
   cout<<" Apellido:"<<a.apellido<<endl;
-  cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
+  //cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
   cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
 
   return cout;
 }
 
+/*
 void validarFecha(int F[])
 {
   F[1] = (F[1] >= 1 && F[1] <= 12)? F[1] : 1;
@@ -105,6 +110,7 @@ void validarFecha(int F[])
     F[0] = (F[0] >= 1 && F[0] <= dias[F[1]])? F[0] : 1;
 }
 
+
 int anioBisiesto(int verificaAnio)
 {
   if(verificaAnio % 400 == (verificaAnio % 100 != 0 && verificaAnio % 4 == 0))
@@ -112,4 +118,4 @@ int anioBisiesto(int verificaAnio)
   else
     return 0;
 }
-  
+*/

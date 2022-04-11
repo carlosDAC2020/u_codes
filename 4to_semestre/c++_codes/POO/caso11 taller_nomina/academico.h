@@ -9,7 +9,7 @@ class academico: public empleado
     friend void imprimir_lista_academicos (int, vector<academico> &);
     friend long nomina_total_academicos(int, vector<academico> &);
   public:
-    academico(string = " ", string = " ", string = " ", int[] = 0, long = 0 , int=0, int=0);
+    academico(string = " ", string = " ", string = " ",/* int[] = 0*/ long = 0 , int=0, int=0);
     ~academico();
     void PonNiveldeEstudio (int);
     void PonPuntajeInvestigacion (int);
