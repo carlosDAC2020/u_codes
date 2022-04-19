@@ -1,3 +1,13 @@
+
+/*
+NOTA IMPORTANTE PORFE
+profe siculpe la molestia pero me vi en la penosa obligacion
+de comentar todas las linea de codigo que tenian algo q ver con el atrivuto de la fecha de nacimiento 
+trata lo mas que pude de corregirlo y cumplir con los requerimientos que me pedia el caso pero la verdad no pude 
+
+ojala no me baje mucho por esto ;)
+*/
+
 #include "empleado.h"
 #include "academico.h"
 #include "administrativo.h"
@@ -105,7 +115,7 @@ int main() {
             break;
             //---------------------------------------------
             case 3:
-                cout<<"\n que desea saber de los empleados academicos ?\n";
+                cout<<"\n que desea saber de los empleados administrativo ?\n";
                 cout<<"1--> lista de empleados \n";
                 cout<<"2--> total a pagar en nomina  \n";
                 cout << "\n\nEscoga una opcion:";cin>>op;
@@ -125,7 +135,7 @@ int main() {
             break;
             //---------------------------------------------
             case 4:
-                cout<<"\n que desea saber de los empleados academicos ?\n";
+                cout<<"\n que desea saber de los empleados de servicio ?\n";
                 cout<<"1--> lista de empleados \n";
                 cout<<"2--> total a pagar en nomina  \n";
                 cout << "\n\nEscoga una opcion:";cin>>op;

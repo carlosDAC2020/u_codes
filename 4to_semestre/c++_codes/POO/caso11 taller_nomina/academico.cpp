@@ -178,7 +178,7 @@ ostream &operator<<(ostream &cout, const academico &a){
     
     }
     cout<<"puntaje de investigacion:"<<a.puntaje_investigacion<<endl;
-
+    cout<<" neto a pagar:"<<a.neto()<<endl;
     return cout;
 }
 

@@ -120,7 +120,7 @@ ostream &operator<<(ostream &cout, const administrativo &a){
         cout<<"Auxiliar \n";
         break;
     }
-
+    cout<<" neto a pagar:"<<a.neto()<<endl;
     return cout;
 }
 

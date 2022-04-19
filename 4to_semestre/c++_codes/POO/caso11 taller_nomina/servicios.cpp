@@ -55,15 +55,15 @@ istream &operator>>(istream &cin, servicios &a){
         }
     } 
     while (a.basico<0);
-   
-   do{
-        cout<<" # horas extras :";cin>>a.horas_extra;
-        if (a.horas_extra<0){
+  do{
+    cout<<" # horas extras :";cin>>a.horas_extra;
+     if (a.horas_extra<0){
         cout<<" ingresaste un salario no valid!! \n";
         }
-    } 
-    while (a.horas_extra<0);
-    
+  }while(a.horas_extra<0);
+   
+   
+    return cin;
 }
 ostream &operator<<(ostream &cout, const servicios &a){
     cout<<"       datos del empleado \n";
@@ -73,7 +73,7 @@ ostream &operator<<(ostream &cout, const servicios &a){
     //cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
     cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
     cout<<" horas extras:"<<a.horas_extra<<endl;
-
+    cout<<" neto a pagar:"<<a.neto()<<endl;
     return cout;
 }
 

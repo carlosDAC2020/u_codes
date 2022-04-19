@@ -95,7 +95,7 @@ ostream &operator<<(ostream &cout, const empleado &a){
   cout<<" Apellido:"<<a.apellido<<endl;
   //cout<<" Fecha de nacimiento:"<< a.fechaN[0] << "/" << mess[a.fechaN[1]] << "/" << a.fechaN[2]<<endl;
   cout<<" Sueldo basico:"<<a.basico<<"$"<<endl;
-
+  cout<<" neto a pagar:"<<a.neto()<<endl;
   return cout;
 }
 
