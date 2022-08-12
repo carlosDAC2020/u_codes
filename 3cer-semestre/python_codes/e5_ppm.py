@@ -31,17 +31,17 @@ promedio_pon = sum_n_x_c / sum_creditos
 print("\n RESULTADOS")
 print("tu promedio ponderado sera de:", promedio_pon, "\n")
 # evaluamos el estado academico del estudiante
-if promedio_pon < 3.0:
-	print("su rendimienrto como estudisnte es malo ya q perdio el semestre ")
-
-elif promedio_pon >= 3.0 and promedio_pon <= 3.20:
-	print("su rendimiento como estudiante es bajo y estaras en observación academica ")
+if promedio_pon >= 4.5 and promedio_pon <= 5.0:
+	print("tu rendimiento como estydiante es exelwnte  ")
+	
+elif promedio_pon >= 4.0 and promedio_pon < 4.5:
+	print("tu rendimiento como estydiante es bueno ")
 
 elif promedio_pon >= 3.20 and promedio_pon < 4.0:
 	print("tu rendimiento como estudiante es aceptable ")
 
-elif promedio_pon >= 4.0 and promedio_pon < 4.5:
-	print("tu rendimiento como estydiante es bueno ")
+elif promedio_pon >= 3.0 and promedio_pon <= 3.20:
+	print("su rendimiento como estudiante es bajo y estaras en observación academica ")
 
-elif promedio_pon >= 4.5 and promedio_pon <= 5.0:
-	print("tu rendimiento como estydiante es exelwnte  ")
+else:
+	print("su rendimienrto como estudisnte es malo ya q perdio el semestre ")
