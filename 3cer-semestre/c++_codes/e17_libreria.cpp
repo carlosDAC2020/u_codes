@@ -4,7 +4,6 @@ using namespace std;
 
 int main(){
     // declaracion de variables a utilizar 
-    string codigo;
     int tipo, n_paginas;
     float precio_libro=0, valor_inventario=0;
 
@@ -13,13 +12,28 @@ int main(){
     while(go==1){
         // solicitamos datos del libro al usuario 
         cout<<" datos del libro "<<l<<"\n";
-        cout<<" codigo: ";cin>>codigo;
         cout<<" tipo: ";cin>>tipo;
-        while(tipo<1 || tipo>4){
-            cout<<"\n valor ingresado no valido ingresa el tipo nuevamente\n";
+        do
+        {
             cout<<" tipo: ";cin>>tipo;
-        }
-        cout<<" # paginas: ";cin>>n_paginas;
+            if (tipo<1 || tipo>4)
+            {
+                cout<<"\n valor ingresado no valido ingresa el tipo nuevamente\n";
+            }
+            
+        } while (tipo<1 || tipo>4);
+        
+        do
+        {
+            cout<<" # paginas: ";cin>>n_paginas;
+            if (n_paginas<1)
+            {
+                cout<<"\n el numero de paginas ingresadas nu puede ser menor a 1\n";
+            }
+
+        } while (n_paginas<1);
+        
+        
         // asignamos el precio total del libro segun su tipo 
         switch(tipo){
             case 1: precio_libro = 10000 + (50 * n_paginas);

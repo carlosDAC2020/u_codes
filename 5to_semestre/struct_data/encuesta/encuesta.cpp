@@ -63,6 +63,7 @@ void encuesta::entrarDatos(string code, string name, int sex, int edad, float in
     prim = nuevo;
   else
     ultm->sig = nuevo;
+
   ultm = nuevo;
 }
 

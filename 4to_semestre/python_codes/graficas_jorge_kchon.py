@@ -5,7 +5,7 @@
 # modulos a utilizar
     # para asiganr rangos de valores a las variables
 import numpy as np 
-    # para generar las graficas 
+    # para generar las s 
 import matplotlib.pyplot as plt 
 
 # variables a utilizar 
