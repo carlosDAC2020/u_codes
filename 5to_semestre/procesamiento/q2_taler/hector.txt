@@ -1,0 +1,246 @@
+"""
+Hector Rafael Marrugo Jimenez T00054717
+Grupo 2242
+"""
+import matplotlib.pyplot as plt 
+import numpy as np 
+import pylab as pl
+from random import randint
+
+
+# funcion 1
+def f1(x):
+    return np.log(x) + x - 5
+def df1(x):
+    return  (1/x) + 1
+def f1_punto_fijo(x):
+    return -np.log(x) + 5 
+
+# funcion 2
+def f2(x):
+    return 2*(2.7182**(-x)) - (4*x)  
+def df2(x):
+    return  -2*(2.7182**(-x)) - 4
+def f2_punto_fijo(x):
+    return (2*2.7182**(-x) )/4
+
+
+# funcion 3
+def f3(x):
+    return (2.7182**(-x)) - x 
+def df3(x):
+    return  -(2.7182**(-x)) - 1
+def f3_punto_fijo(x):
+    return 2.7182**(-x)
+
+
+# metodod de Newton-Raphson
+def Newton_Raphson(x,f,df):
+    return x -((f(x))/(df(x)))
+# metodo de la secante 
+def Secante(x1, x2, f):
+    return x2 - (( f(x2)*(x1-x2) ) / ( f(x1) - f(x2) ))
+# Biseccion
+def biseccion(xl,xu, es, f):
+    # craemos este diccionario y lista auxiliar para irguaradando los resultado de la evaluacion del metodo 
+    l_er=[]
+    # resultados que obtendremos al evaluar la funcion con el metodo de biseccion 
+    result={
+        "errores_r":[],
+        "raiz":0.0
+   }
+    # contador de iteraciones 
+    i=1
+    # variable que ira almacenado los valores anteriores de las evauaciones 
+    xrant=0
+    while True:
+        # aplicamos la formula de la biseccion
+        xr=(xl+xu)/2
+        # obtenemos el error relativo
+        er=abs(((xr-xrant)/xr)*100)
+        # vamos guardando los errores obtenidos en una lista auxiliar
+        l_er.append(er)
+        xrant=xr
+        if f(xl)*f(xr)<0:
+            xu=xr
+        elif f(xl)*f(xr)>0:
+            xl=xr
+        if er<es:
+            raiz=xr
+            break
+        i+=1
+    # guardamos los resultados de la evaluacion en el diccionario auxiliar
+    result["errores_r"]=l_er
+    result["raiz"]=raiz
+    # retornamos el registro de la evaluacion 
+    return result
+
+#---------------------------------------------------------------------------------------------------------------
+
+def evaluador_metodos_abiertos(metodo, xi, x2, es, id_metodo, f, df ):
+    # craemos este diccionario y lista auxiliar para irguaradando los resultado de la evaluacion del metodo 
+    l_er=[]
+    result={
+        "errores_r":[],
+        "raiz":0.0
+   }
+    # variable que ira almacenado los valores anteriores de las evauaciones 
+    xi1_ant=0
+    # contadora de iteraciones 
+    i=1
+    while True:
+        # evaluamos xi con el metodod correspondiente 
+        if id_metodo=="PF": # cuando se evalua el metodod de punto fijo 
+            xi1 = metodo(xi)
+        elif id_metodo=="NR": # cuando se evalua el metodo de Newton-Raphson 
+            xi1 = metodo(xi,f,df)
+        else:                   # cuando se evalua el metodo de la secante 
+            xi1= metodo(xi, x2, f)
+            
+        # obtenemos el error relativo
+        er=abs((xi1-xi1_ant)/xi1)
+        # vamos guardando los errores obtenidos en una lista auxiliar
+        l_er.append(er)
+        # guardamos el valor enterior 
+        xi1_ant=xi1
+
+        # al evaluarse el metodo de punto fijo y Newton-Raphson se hara la siguiente asignacion-------------
+        if id_metodo=="PF" or id_metodo=="NR":
+            xi=xi1
+        #---------------------------------------------------------------------------------------------------
+        else: # esto se ejecutara solo si se evalua el metodo de la secante -----------------------------
+            xi=x2
+            x2=xi1
+        #----------------------------------------------------------------------------------------------------
+        # detenemos la evualcionn cuando el error rekativo sea menor que el esprado 
+        if er<es:
+            break
+        # vamos contando las iteraciones 
+        i+=1
+    # guardamos los resultados de la evaluacion en el diccionario auxiliar
+    result["errores_r"]=l_er
+    result["raiz"]=xi
+    # retornamos el registro de la evaluacion 
+    return result
+#----------------------------------------------------------------------------------------------------------------
+
+def correcion_tamaño_listas(lists):
+     # igualamos las lkstas pasadas como parametros al mismo tamaño y agregamos ceros en las posiciones nuevas 
+    
+     aux_men_may_lists=[len(l) for l in lists ]
+     aux_men_may_lists.sort()
+    
+     for l in lists:
+        while len(l) < aux_men_may_lists[-1]:
+            l.append(0)
+    
+     
+
+# ibtenemos la lista de promedio de 3 listas 
+def proms_errores_r(l1, l2, l3):
+    return [ ( l1[i] + l2[i] + l3[i] ) /3 for i in range(len(l1))]
+
+
+#---------------------------------------------------------------------------------------------------------------
+
+print(" Evaluaremos las funciones:")
+print(" f1(x) = ln(x) + x - 5")
+print(" f2(x) = 2e^-x - 4x")
+print(" f3(x) = e^-x - x")
+
+print("\n ingrese un intervalo en el cual evaluar la funcion ")
+li = int(input(" limite inferior:"))
+ls = int(input(" limite superior:"))
+while ls<li:
+    print(" limite superior no puede ser mayor al inferior!")
+    ls = int(input("inghresa limite superior:"))
+
+# valor inical que usaremos para evaluar en los metodos habiertos 
+Xi=randint(li, ls)
+
+# definimos el error esperado
+es=0.00001
+
+
+# evitamos que el programa tenga problemas al evluar 0 en el logaritmo de la funcion 1
+if li==0 or Xi==0:
+    if li==0:
+        li+=0.1
+    elif Xi==0:
+        Xi+=0.1 
+
+print(" se obtuvieron las siguientes raizes usando los siguientes metodos en cada funcion")
+print("punto fijo ")
+# evaluacion del metodod de punto fijo 
+pf_result_f1=evaluador_metodos_abiertos(f1_punto_fijo,Xi,ls,es,"PF",f1,df1)
+print("f1:",pf_result_f1["raiz"])
+pf_result_f2=evaluador_metodos_abiertos(f2_punto_fijo,Xi,ls,es,"PF",f2,df2)
+print("f2:",pf_result_f2["raiz"])
+pf_result_f3=evaluador_metodos_abiertos(f3_punto_fijo,Xi,ls,es,"PF",f3,df3)
+print("f3:",pf_result_f3["raiz"])
+# listas de errores relativos ubtenidas por cada metodo
+lists_er_punto_fijo=[pf_result_f1["errores_r"], pf_result_f3["errores_r"], pf_result_f3["errores_r"]]
+#corregimos la el tamaño de las listas 
+correcion_tamaño_listas(lists_er_punto_fijo)
+# obtenemos los promedios de los errores relativos de las evaluacionde del metodo de punto fijo en cada funcion
+p_punto_fijo=proms_errores_r(lists_er_punto_fijo[0], lists_er_punto_fijo[1], lists_er_punto_fijo[2])
+
+print("\n Newton-Raphson")
+# evaluacion del metodod de Newton-Raphson
+nr_result_f1=evaluador_metodos_abiertos(Newton_Raphson,Xi,ls,es,"NR",f1,df1)
+print("f1:",nr_result_f1["raiz"])
+nr_result_f2=evaluador_metodos_abiertos(Newton_Raphson,Xi,ls,es,"NR",f2,df2)
+print("f2:",nr_result_f2["raiz"])
+nr_result_f3=evaluador_metodos_abiertos(Newton_Raphson,Xi,ls,es,"NR",f3,df3)
+print("f3:",nr_result_f3["raiz"])
+lists_er_Newton_Raphson=[nr_result_f1["errores_r"], nr_result_f2["errores_r"], nr_result_f3["errores_r"]]
+correcion_tamaño_listas(lists_er_Newton_Raphson)
+p_Newton_Raphson=proms_errores_r(lists_er_Newton_Raphson[0], lists_er_Newton_Raphson[1], lists_er_Newton_Raphson[2])
+
+print("\n Secante")
+# evaluacion del metodod de la Secante
+sc_result_f1=evaluador_metodos_abiertos(Secante,Xi,ls,es,"SC",f1,df1)
+print("f1:",sc_result_f1["raiz"])
+sc_result_f2=evaluador_metodos_abiertos(Secante,Xi,ls,es,"SC",f2,df2)
+print("f2:",sc_result_f2["raiz"])
+sc_result_f3=evaluador_metodos_abiertos(Secante,Xi,ls,es,"SC",f3,df3)
+print("f3:",sc_result_f3["raiz"])
+lists_er_Secante=[sc_result_f1["errores_r"], sc_result_f2["errores_r"], sc_result_f3["errores_r"]]
+correcion_tamaño_listas(lists_er_Secante)
+p_Secante=proms_errores_r(lists_er_Secante[0], lists_er_Secante[1], lists_er_Secante[2])
+
+print("\n Biseccion")
+# evaluacion del metodod de la Biseccion
+bc_result_f1=biseccion(li,ls,es,f1)
+print("f1:",bc_result_f1["raiz"])
+bc_result_f2=biseccion(li,ls,es,f2)
+print("f2:",bc_result_f2["raiz"])
+bc_result_f3=biseccion(li,ls,es,f3)
+print("f3:",bc_result_f3["raiz"])
+lists_er_Biseccion=[bc_result_f1["errores_r"], bc_result_f2["errores_r"], bc_result_f3["errores_r"]]
+correcion_tamaño_listas(lists_er_Biseccion)
+p_Biseccion=proms_errores_r(lists_er_Biseccion[0], lists_er_Biseccion[1], lists_er_Biseccion[2])
+
+
+
+lits_proms_ers=[p_punto_fijo, p_Newton_Raphson, p_Secante, p_Biseccion]
+correcion_tamaño_listas(lits_proms_ers)
+
+    
+iters = [i for i in range(1,len(lits_proms_ers[0])+1)]
+
+# Grafica
+fig, ax = plt.subplots()
+plt.grid()
+ax.set_title('Iteraciones VS Error rekativo', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+ax.plot(iters, lits_proms_ers[0], label = 'punto fijo', color = 'tab:blue')
+ax.plot(iters, lits_proms_ers[1], label = 'Newton-Raphson', color = 'tab:green')
+ax.plot(iters, lits_proms_ers[2], label = 'Secante', color = 'tab:orange')
+ax.plot(iters, lits_proms_ers[3], label = 'Biseccion', color = 'tab:red')
+ax.legend(loc = 'upper right')
+ax.grid(axis = 'y', color = 'gray', linestyle = 'dashed')
+ax.set_xlabel("Iteraciones")
+ax.set_ylabel("Error relativo")
+plt.show()
+
+

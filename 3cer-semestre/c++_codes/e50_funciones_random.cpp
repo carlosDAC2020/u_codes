@@ -23,7 +23,7 @@ bool n_primo(int num){ // evaluar si un numero es primo o no
 		cout<<" primo \n";
 		return true;
 	}
-	for (int i=2; i<=num; i++){
+	for (int i=3; i<=num; i++){
 		if(num%i==0){
 			cout<<" no es primo \n";
 			return false;

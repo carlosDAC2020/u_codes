@@ -6,6 +6,7 @@
         "*.tcc": "cpp",
         "istream": "cpp",
         "iosfwd": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "cmath": "cpp"
     }
 }

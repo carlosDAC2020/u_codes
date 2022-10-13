@@ -28,7 +28,7 @@ float covarianz_a(float arr1[], float arr2[], float med1, float med2, float cant
 
     for(int i=0; i<cant; i++){
         xy= arr1[i]*arr2[i];
-        sum_xy= xy;
+        sum_xy+= xy;
     }
     covar=(sum_xy/cant)-(med1*med2);
     return covar;

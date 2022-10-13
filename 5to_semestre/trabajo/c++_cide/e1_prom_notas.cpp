@@ -3,7 +3,7 @@ using namespace std;
 
 int menu() {
     cout << "\n\n\t*** MENU PRINCIPAL ***";
-    cout<< "\n\t1. promedio ponderado";
+    cout<< "\n\t1. promedio ado";
     cout<< "\n\t2. promedio simple de un curso";
     cout<< "\n\t3. Nota minima para ganar una materia";
     cout<< "\n\t4. Salir del programa";
@@ -20,10 +20,10 @@ int menu() {
     return op;
 }
 
-void promedio_ponderado(){
+void promedio_ado(){
     
     int cant_materias, sum_creditos=0, sum_n_x_c=0, n_creditos;
-    float nota_f, prom_ponderado;
+    float nota_f, prom_ado;
     cout<<" ingresa cantidad de materias a evaluar:";cin>>cant_materias;
 
 
@@ -38,9 +38,9 @@ void promedio_ponderado(){
         }
         sum_n_x_c+=nota_f*n_creditos;
     }
-    prom_ponderado=sum_n_x_c/sum_creditos;
+    prom_ado=sum_n_x_c/sum_creditos;
 
-    cout<<"\n el promedio genral del estudisnte fue de "<<prom_ponderado<<endl;
+    cout<<"\n el promedio genral del estudisnte fue de "<<prom_ado<<endl;
     
 }
 
