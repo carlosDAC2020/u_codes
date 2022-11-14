@@ -1,5 +1,8 @@
 #include "arbol.h"
 
+string profeciones[10]={"Industrial","Eléctrica","Electrónica","Mecánica","Mecatrónica","Química","Biomédica","Ambiental","Civil","Sistemas"};
+
+
 arbol::arbol()
 {
   raiz = NULL;
@@ -21,6 +24,7 @@ ABB arbol::crearNodo(int cc, string name, string apll, int cel, int prof, int fn
   nuevoNodo->fch_nacimiento[0] = fn[0];
   nuevoNodo->fch_nacimiento[1] = fn[1];
   nuevoNodo->fch_nacimiento[2] = fn[2];
+  nuevoNodo->edad=2021-fn[2];
   nuevoNodo->city_residencia = city;
   nuevoNodo->izq = NULL;
   nuevoNodo->der = NULL;
@@ -129,22 +133,117 @@ bool arbol::validar(ABB &arbolabb, int dato)
   return r;
 }
 
-
-void arbol::buscar_egresados(ABB raizABB){
-  int cedulaBus;
-  cout<<"\n\n  BUSQUEDA DE EGRESADOS \n";
-  cout<<"cc a buscar:";cin>>cedulaBus;
-  bool egresado;
-  egresado = validar(raizABB, cedulaBus);
-  if(egresado == 0){
-    cout << "La cedula ingreada no tiene datos guardados" << endl;
-  }
-  else{
+void arbol::imprimir_egresado(ABB raizABB){
     cout << "Nombre: " << raizABB->Nombre << endl;
     cout << "Apellido: " << raizABB->Apellido << endl;
     cout << "Telefono: " << raizABB->NoMovil << endl;
-    cout << "Profesion: " << raizABB->profesion << endl;
+    cout << "Profesion: ingenieria "<<profeciones[raizABB->profesion-1]; 
     cout << "Fecha de nacimiento: " << raizABB->fch_nacimiento[0] << "," << raizABB->fch_nacimiento[1] << "," << raizABB->fch_nacimiento[2] << endl;
     cout << "Ciudad: " << raizABB->city_residencia << endl;
+}
+
+void arbol::buscar_por_ciudad(ABB arbolabb, string city){
+  
+  if (arbolabb!=NULL)
+  {
+    buscar_por_ciudad(arbolabb->izq, city );
+    if (arbolabb->city_residencia==city)
+    {
+      cout<<"\n----------------------\n";
+      imprimir_egresado(arbolabb);
+    }
   }
+ 
+}
+
+void arbol::buscar_por_profesion(ABB arbolabb, int prof){
+  if (arbolabb!=NULL)
+  {
+    buscar_por_profesion(arbolabb->izq, prof );
+    if (arbolabb->profesion==prof)
+    {
+      cout<<"\n----------------------\n";
+      imprimir_egresado(arbolabb);
+    }
+  }
+}
+
+void arbol::buscar_por_rango_edad(ABB arbolabb, int li, int ls){
+  if (arbolabb!=NULL)
+  {
+    buscar_por_rango_edad(arbolabb->izq, li, ls );
+    if (arbolabb->edad>=li && arbolabb->edad<=ls)
+    {
+      cout<<"\n----------------------\n";
+      imprimir_egresado(arbolabb);
+    }
+  }
+}
+
+void arbol::buscar_egresados(ABB raizABB, int op){
+  string city;
+  int cedulaBus, prof, li, ls;
+
+  cout<<"\n\n  BUSQUEDA DE EGRESADOS  \n";
+  switch (op)
+  {
+    // buscar por cedula
+  case 1:
+    cout<<"cc a buscar:";cin>>cedulaBus;
+    bool val;
+    val = validar(raizABB, cedulaBus);
+    cout << "\n Datos del egresado" << endl;
+    if(val == 0){
+      cout << "La cedula ingreada no tiene datos guardados" << endl;
+    }
+    else{
+      cout<<"\n----------------------\n";
+      imprimir_egresado(raizABB);
+    }
+    break;
+
+    // buscar pro profecion 
+  case 2:
+    do
+    {
+      cout << "\n ingeneria de profecion  \n";
+      cout<<" 1 -> Industrial \n";
+      cout<<" 2 -> Eléctrica \n";
+      cout<<" 3 -> Electrónica \n";
+      cout<<" 4 -> Mecánica \n";
+      cout<<" 5 -> Mecatrónica \n";
+      cout<<" 6 -> Química \n";
+      cout<<" 7 -> Biomédica \n";
+      cout<<" 8 -> Ambiental \n";
+      cout<<" 9 -> Civil \n";
+      cout<<" 10 -> Sistemas \n";
+      cout<<" ingrese su opcion aqui -->";cin>>prof;
+      if (prof<1 || prof>10)
+      {
+        cout<<" ingrese solo los valores señalados !! \n";
+      }
+    } while (prof<1 || prof>10);
+    cout<<"\n egresados de  ingenieria selescioanda \n ";
+    buscar_por_profesion(raizABB, prof);
+    break;
+
+    // buscar por ciudad 
+  case 3:
+    cout<<" Cuidad a buscar:";cin>>city;
+    cout<<" egresados de la ciudad "<<city<<endl;
+    buscar_por_ciudad(raizABB, city);
+    break;
+
+    // buscar por rango de edad 
+  case 4:
+    cout<<" ingresa un rango de edad \n";
+    cout<<" edad minima:";cin>>li;
+    cout<<" edad maxima:";cin>>ls;
+    cout<<" \n egresados entre "<<li<<" y "<<ls<<" años \n";
+    buscar_por_rango_edad(raizABB, li, ls);
+    break;
+  default:
+    break;
+  }
+  
 }

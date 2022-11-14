@@ -32,10 +32,6 @@ print("-"*33)
 """
 Este artículo lo puede ver en este link: https://www.elobservador.com.uy/nota/democracy-index-por-que-uruguay-es-la-unica-democracia-plena-de-sudamerica-202221222140
 
-
-
-
-
 """
 x=1
 for i in range(12):

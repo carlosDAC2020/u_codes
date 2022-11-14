@@ -1,9 +1,12 @@
+/*
+TALLLER ABB
+Carlos Daniel Agamez Palomino T00059006
+*/
+
 #include "arbol.h"
 
 int menu();
-void ingreso_datos(ABB, arbol);
-
-
+void ingreso_datos(ABB &, arbol &);
 
 int main()
 {
@@ -14,15 +17,15 @@ int main()
         switch (menu()) {
             case 1: ingreso_datos(raizABB, arbolABB);
             break;
-            case 2: arbolABB.buscar_egresados(raizABB);
+            case 2: arbolABB.buscar_egresados(raizABB,1);
             break;
-            case 3: arbolABB.enOrden(raizABB);
+            case 3: arbolABB.buscar_egresados(raizABB,2);
             break;
-            case 4: 
+            case 4: arbolABB.buscar_egresados(raizABB,3);
             break;
-            case 5: 
+            case 5: arbolABB.buscar_egresados(raizABB,4);
             break;
-            case 6: go=6;
+            case 6: go=6; 
             break;
             default: cout << "\n\n\tERROR EN OPCION";
         }
@@ -38,7 +41,7 @@ int menu()
   cout << "\t [2]  buscar egresado por la cedula\n";
   cout << "\t [3]  buscar egresados por profecion\n";
   cout << "\t [4]  buscar egresados por ciudad\n";
-  cout << "\t [5]  Eliminar elemento\n";
+  cout << "\t [5]  buscar egresados por rango de edad\n";
   cout << "\t [6] SALIR\n";
   do
     {
@@ -51,7 +54,7 @@ int menu()
     return op;
 }
 
-void ingreso_datos(ABB raizABB, arbol arbolABB){
+void ingreso_datos(ABB &raizABB, arbol &arbolABB){
       int cc;
   string Name;
   string Apell;
@@ -123,13 +126,10 @@ void ingreso_datos(ABB raizABB, arbol arbolABB){
   cout << " ciudad de rsidencia : ";  cin>> city_res;
 
   
-    if(arbolABB.validar(raizABB, cc)){
+    if(arbolABB.validar(raizABB, cc)==0){
         arbolABB.insertar(raizABB, cc, Name, Apell, NoM, prof, fch_nc, city_res );
-        cout << "\n dato ingresado exitosamente.\n";
     } 
     else{
          cout << "\n ya hay un registro similar .\n";
     }
-       
-
 }
