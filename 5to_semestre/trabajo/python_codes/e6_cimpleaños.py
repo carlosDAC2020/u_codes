@@ -1,5 +1,15 @@
 # declaramos el diccionario a utilizar 
-diccionario={}
+diccionario= {'ALE':(24,9,2004), 'ARI':(12,12,2003), 'ATA':(23,2,2004),
+            'AXA':(11,2,2002), 'BEN':(3,4,2005), 'BOB':(24,10,2003),
+            'DAI':(1,8,2003), 'EDI':(10,9,2002), 'ELI':(22,12,2003),
+            'EMO':(6,1,2002), 'GIO':(13,5,2003), 'GIO':(13,5,2003),
+            'HUG':(11,1,2004), 'IAN':(5,2,2001), 'IVO':(13,12,2004),
+            'JAN':(21,3,2004), 'JAY':(1,3,2005), 'KEN':(30,8,2002),
+            'LIO':(25,1,2004), 'MAX':(24,7,2005), 'NAI':(26,2,2005),
+            'NIL':(22,2,2002), 'ODI':(29,12,2004), 'PAU':(20,1,2003),
+            'TOM':(14,4,2004), 'REX': (5,2,2001), 'ROS': (24,7,2005), 'LOI':(24,7,2005)}
+
+
 
 
 # declaramos una lista con los meses del año para apollarnos a la hora de imprimir
@@ -177,9 +187,7 @@ def punto5():
 
 # funcion principal
 def run():
-    print(" Gestor de cumpleaños ")
-    # ingresamos los datos de las personas 
-    ingreso_datos()
+    print(" Gestor de cumpleaños ")1
     go=1
     # usamos este cilco para hacer que se repita el programa hasta que el usuario quiera
     while go==1:

@@ -146,7 +146,7 @@ int login(){
  mostradas en el menu
 */
 void sesion(){
-     int go=1;
+    int go=1;
 	while (go<5){
         switch (menu2()) {
             case 1: 
@@ -254,7 +254,6 @@ void op3(){
                 }
             }
         }
-        cout<<l_materias[i]<<": "<<cant_exam_apb<<endl;
         // vamos comparando la cantidad de examenes aprobados de cada materia
         // para ver cual obtuvo mas examenes aprobados
         if (cant_exam_apb > may_cant_exam_apb) 
@@ -277,9 +276,9 @@ void op4(){
     float may_nota_infta;
     estudiante est_may_noat_intf;
 
-     for (int i = 0; i < 18; i++)
+    for (int i = 0; i < 18; i++)
     {
-        if(lst_reults_estudiante[i].materia == l_materias[0] && lst_reults_estudiante[i].nota>may_nota_infta)
+        if(lst_reults_estudiante[i].materia == l_materias[0] && lst_reults_estudiante[i].nota > may_nota_infta)
         {
             may_nota_infta = lst_reults_estudiante[i].nota;
             est_may_noat_intf = lst_reults_estudiante[i];
@@ -324,7 +323,7 @@ y los guarda en una lista de registros de tipo estudiante
 void leer_archivo(){
     // declaramos y habrimos el archivo a leer
 	ifstream archivo;
-	archivo.open("datos.csv", ios::in);
+	archivo.open(".datos.csv", ios::in);
 	if (archivo.fail()) { // validamos la existencia del archivo 
 		cout << "* No se puedo leer el archivo." << endl;
 		exit(1);
@@ -366,6 +365,6 @@ void leer_archivo(){
 
         contador+=1;
     }
-  
+
     archivo.close();
 }

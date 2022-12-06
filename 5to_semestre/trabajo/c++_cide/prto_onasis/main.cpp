@@ -500,7 +500,7 @@ int leer_asiganr_empleados(){
     // variables auxiliares 
     string nombre_aux, apellido_aux, aux_profesion ,linea,auxiliar;
     int aux_id, aux_edad, aux_fi[3], aux_ff[3], aux_clasificacion;
-
+    
     // cantidad de clientes ya guardados 
     int contador=0;
     // recorremos el 1archivo1 de lectura linea oir linea 

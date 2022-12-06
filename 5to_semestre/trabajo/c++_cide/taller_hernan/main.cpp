@@ -28,13 +28,13 @@ int main() {
                 ingreso_datos();
             break;
             case 2: 
-               horas_por_hombre();
+                horas_por_hombre();
             break;
             case 3:
                 horas_por_jornada();
             break;
             case 4:
-                 horas_total_trabajadas();
+                horas_total_trabajadas();
             break;
             case 5:
                 go=5; 

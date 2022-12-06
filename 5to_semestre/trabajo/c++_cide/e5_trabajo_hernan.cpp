@@ -32,7 +32,6 @@ int main() {
             default: cout << "\n\n\tERROR EN OPCION";
         }
     }
-   
     return 0;
 }
 

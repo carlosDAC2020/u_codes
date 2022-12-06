@@ -4,10 +4,8 @@ en un rango de numeros elejisos por el usuario
 mostraremos por pantalla los numeros de dicho 
 rango divicibles entre un numero x tambien 
 ingresado por el usuario
-
+"""
 # ingreso del intervalo
-from time import process_time_ns
-
 
 num_A=int(input(" numero de incio del intervalo:"))
 
@@ -28,11 +26,3 @@ while num_A <= num_B:
     print("|{:^10}|{:^10}|{:^10}|".format(num_A,resto,div))
     num_A+=1
 print("-"*33)
-"""
-"""
-Este artículo lo puede ver en este link: https://www.elobservador.com.uy/nota/democracy-index-por-que-uruguay-es-la-unica-democracia-plena-de-sudamerica-202221222140
-
-"""
-x=1
-for i in range(12):
-    print(i**2+1)
