@@ -1,0 +1,43 @@
+Docker 
+Es una plataforma de contenedores que permite empaquetar y distribuir aplicaciones de manera eficiente. Un contenedor es una forma de aislar una aplicación y sus dependencias de un sistema operativo, lo que permite que la aplicación funcione de manera consistente en diferentes entornos.
+
+Ventajas de Docker:
+
+    Permite la portabilidad de aplicaciones entre entornos, lo que facilita su despliegue y escalabilidad.
+    Aumenta la eficiencia al permitir utilizar el mismo sistema operativo en varios contenedores.
+    Facilita la gestión de las dependencias de una aplicación.
+    Permite una mayor seguridad al aislar las aplicaciones entre sí.
+
+Desventajas de Docker:
+
+    Puede ser complejo configurar y administrar contenedores en entornos de producción.
+    Puede ser más costoso en términos de recursos si se comparan con otras tecnologías de virtualización.
+
+Los elementos que componen Docker son:
+
+    The Docker Engine: es el componente principal de Docker que permite crear, ejecutar y administrar contenedores. Incluye un demonio de Docker que se ejecuta en el sistema operativo, una API para interactuar con el demonio y una interfaz de línea de comandos (CLI) para interactuar con la API.
+
+    Imágenes: son plantillas de contenedores que contienen el sistema operativo, las aplicaciones y sus dependencias. Pueden ser descargadas de un registro de imágenes, como el Docker Hub, o pueden ser creadas por el usuario.
+
+    Contenedores: son instancias de una imagen que se ejecutan en un sistema operativo. Cada contenedor tiene su propio espacio de almacenamiento, recursos y configuraciones.
+
+    Registros de imágenes: son repositorios en línea donde se almacenan y comparten imágenes de contenedores. El Docker Hub es el repositorio de imágenes oficial de Docker, pero también existen otros repositorios de terceros.
+
+    Docker Compose: es una herramienta que permite definir y ejecutar aplicaciones compuestas por varios contenedores. Permite crear y configurar varios contenedores de manera fácil y automatizada.
+
+    Docker Swarm: es una herramienta de orchestration de contenedores que permite crear y administrar clusters de contenedores. Permite escalar y desplegar contenedores en un cluster de manera automatizada.
+
+    Docker Machine: es una herramienta que permite crear, configurar y administrar máquinas virtuales que ejecutan Docker Engine. Es útil para desplegar Docker en entornos de nube o en sistemas remotos.
+
+    Redes: Docker permite crear y configurar redes para conectar contenedores entre sí y con el host. Se pueden crear redes privadas para aislar contenedores y permitir comunicaciones seguras entre ellos.
+
+    Volúmenes: Docker permite crear y administrar volúmenes para almacenar datos de manera persistente. Los volúmenes se pueden asociar a un contenedor específico o compartir entre varios contenedores. Esto permite mantener los datos a salvo incluso si el contenedor se detiene o se elimina.
+
+
+
+Aspectos a tener en cuenta al usar Docker:
+
+    La compatibilidad con el sistema operativo en el que se va a ejecutar.
+    La configuración de los contenedores para asegurar su seguridad y rendimiento.
+    La gestión de las dependencias de la aplicación.
+    La planificación de la escalabilidad y el despliegue de los contenedores.

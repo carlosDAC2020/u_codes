@@ -1,0 +1,16 @@
+
+        REDES Y COMUNICACION 
+
+TEMAS RELACIONADOS  
+    # mascaras: esto nos indica la capacidad maxima de dispositivos que puede tener conectados una red y su calculo es esencial 
+        caracteristicas:
+        - una secuencia de 1s seguida de 0ros
+        - la parte de 1s separa el identificador de red 
+        - la parte de 0ros determina la cantidad de host posibles = (2^n)-2 donde n es la cantidad de ceros a la derecha (para el caso inverso n se hace igual a la potencia de 2 mas cercana por encima de la cantidad de host a evaluar )
+        - restamos 2 porque el primero es el ID de red y el ultimo es Brodcast y esta prohibido usarlo en host 
+
+
+RECOMENDACIONES 
+    # aprender a usar los cuatro sistemas numericos: binario, decimal, hexadecimal y octal y hacer comberciones de un sistema a otro 
+
+TECNOLOGIAS APLICADAS
