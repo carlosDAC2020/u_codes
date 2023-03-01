@@ -1,0 +1,16 @@
+punto 1
+    # cuando se intenta resolver usando el metodo de biseccion
+    dependiendo la cantidad de cifras significativas aveces la 
+    cantidad de iteraciones no sera suficnete para encontarar 
+    la raiz esperando que el error relativo sea menor que el error esperado
+        ejp
+        si queres que la exactitud este en 6 cifras decimales y 
+        das como minimo 100 iteraciones, estas no seran sufientes para encontrar la raiz 
+    
+    # caso contrario al anterior, con el metodo de falsa posicion no se generan 
+    inconvenientes para encontrar la raiz
+        ejp 
+        si ingresamos los mimos datos de entrada que en el ejemplo q dijimos en 
+        la biseccion de 6 cifras decimales de exactatiud y 100 iteraciones como minimo 
+        usando el metodo de falsa posicion le tomaria solo 5 iteraciones para encontrar
+        la raiz con un error aproximado del 0.00027 

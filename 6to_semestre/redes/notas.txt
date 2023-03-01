@@ -2,6 +2,38 @@
         REDES Y COMUNICACION 
 
 TEMAS RELACIONADOS  
+    # Una dirección IP (Internet Protocol) es un número que se utiliza para 
+    identificar de manera única un dispositivo en una red de computadoras que 
+    utiliza el protocolo de Internet para comunicarse. Esta dirección consta de cuatro conjuntos de números separados por puntos, 
+    por ejemplo, 192.168.1.1.
+
+    Existen dos tipos principales de direcciones IP:
+
+        Direcciones IP públicas: son direcciones únicas asignadas a dispositivos 
+        que se conectan directamente a Internet. Estas direcciones se utilizan 
+        para identificar un dispositivo en la red pública de Internet y se pueden 
+        utilizar para comunicarse directamente con otros dispositivos de Internet.
+
+        Direcciones IP privadas: son direcciones que se utilizan en una red 
+        privada, como una red doméstica o empresarial, para identificar 
+        dispositivos en esa red. Estas direcciones no son únicas en la red 
+        pública de Internet y no se pueden utilizar para comunicarse directamente con dispositivos en Internet.
+
+    Las direcciones IP privadas se dividen en tres clases principales:
+
+        Clase A: se utiliza para redes muy grandes con más de 16 millones de dispositivos. Los 
+        primeros 8 bits (el primer número) identifican la red y los 24 bits restantes (tres números) identifican los dispositivos individuales. El rango de direcciones IP de Clase A es de 10.0.0.0 a 10.255.255.255.
+
+        Clase B: se utiliza para redes medianas con entre 65,536 y 16 millones de dispositivos. 
+        Los primeros 16 bits (los dos primeros números) identifican la red y los 16 bits 
+        restantes (dos números) identifican los dispositivos individuales. El rango de 
+        direcciones IP de Clase B es de 172.16.0.0 a 172.31.255.255.
+
+        Clase C: se utiliza para redes pequeñas con menos de 256 dispositivos. Los primeros 24
+         bits (los primeros tres números) identifican la red y los 8 bits restantes (un número) 
+         identifican los dispositivos individuales. El rango de direcciones IP de Clase C es de 
+         192.0.0.0 a 223.255.255.255.
+
     # mascaras: esto nos indica la capacidad maxima de dispositivos que puede tener conectados una red y su calculo es esencial 
         caracteristicas:
         - una secuencia de 1s seguida de 0ros
@@ -9,8 +41,32 @@ TEMAS RELACIONADOS
         - la parte de 0ros determina la cantidad de host posibles = (2^n)-2 donde n es la cantidad de ceros a la derecha (para el caso inverso n se hace igual a la potencia de 2 mas cercana por encima de la cantidad de host a evaluar )
         - restamos 2 porque el primero es el ID de red y el ultimo es Brodcast y esta prohibido usarlo en host 
 
+    # Direccionamiento 
+
+
+    # montaje de redes LAN y WAN 
+        - interconeccion 
+            guiada : con cables 
+            no guiada: inalambricas 
+            
+        - configuracion 
+
+
+
+    pasos para un direccionamientoi en una res 
+
+        1 analisis de la red en cuestion, validacion del tipo de red (A, B o C)
+        2 vemos la cantidad de dispositivos en cada subred 
+        3 calculamos las mmarcaras para cada elemento de la red 
+        
+
 
 RECOMENDACIONES 
     # aprender a usar los cuatro sistemas numericos: binario, decimal, hexadecimal y octal y hacer comberciones de un sistema a otro 
 
 TECNOLOGIAS APLICADAS
+
+
+
+
+192.68.1.2

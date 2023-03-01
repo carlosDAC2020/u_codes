@@ -14,7 +14,7 @@ usamos un decorador para ver cuando tiempo toma
 la ejecucion de las funciones en las que aplicamos 
 el metodo cde biseccion y falsa posiscion solo 
 para probar cual es mas eficiente 
-"""
+
 def execution_time(func):
     def wrapper(*args, **kwargs):
         initial_time = datetime.now()
@@ -24,6 +24,7 @@ def execution_time(func):
         print(f'Pasaron {time_elapsed.total_seconds()} segundos de la ejecucion de la funcion ')
         return time_elapsed.total_seconds()
     return wrapper
+"""
 
 """ funcin con la que calculamos la velocidad del paracaidista """
 def f(c):
@@ -31,7 +32,7 @@ def f(c):
 
 
 " funcion de metodo de la biceccion "
-@execution_time
+#@execution_time
 def biseccion(xl,xu, es, xv):
     # valor auxilar anterior de x
     xrant=0
@@ -79,7 +80,7 @@ def biseccion(xl,xu, es, xv):
 
 
 " funcion del metodo de la falsa posision "
-@execution_time
+#@execution_time
 def falsa_posicion(xl, xu, es, xv): 
     # valor auxilar anterior de x
     xrant=0
@@ -113,7 +114,6 @@ def falsa_posicion(xl, xu, es, xv):
     print("f(xl)=",f(xl))
     print("f(xu)=",f(xu))
 
-    print("xr=",xr)
 
     print("\n errores")
     print("Er=",er)
