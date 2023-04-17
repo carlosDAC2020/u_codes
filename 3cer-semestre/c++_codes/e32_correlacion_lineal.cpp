@@ -24,7 +24,7 @@ float media(float arr[], int cant){
 }
 
 float covarianz_a(float arr1[], float arr2[], float med1, float med2, float cant){
-    float xy, sum_xy, covar;
+    float xy, sum_xy=0, covar;
 
     for(int i=0; i<cant; i++){
         xy= arr1[i]*arr2[i];
@@ -67,7 +67,7 @@ int main(){
     ingreso_datos(pesos,estaturas,n);
     cout<<"\n peso y estatura de los estudiantes \n";
     cout<<"| estudiante| peso  | estatura ! \n";
-    for (int i=0; i<n; i++){
+    for (int i=0; i<6; i++){
         cout<<"   "<<i+1<<"       "<<pesos[i]<<"     "<<estaturas[i]<<endl;
     }
 
@@ -108,7 +108,7 @@ int main(){
         cout<<" relacion: inexistente \n";
     }
     
-
+    
     // fuerza de relacion
     if((correlacion<=-1.0 && correlacion<=-0.5)||(correlacion>=0.5 && correlacion<=1.0)){
         cout<<" fuerza de relacion:FUERTE \n";

@@ -1,7 +1,7 @@
 
 # TALLER 
 # Maria Angeles Gil Arrieta T00061111
-#Sayuri Julieth Marmol Matute T00056614
+# Sayuri Julieth Marmol Matute T00056614
 # Carlos Daniel Agamez T00059006
 # lenguaje de programacion : Python 3.9.5
 # Nrc : 1457

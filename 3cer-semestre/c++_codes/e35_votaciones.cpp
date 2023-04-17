@@ -1,15 +1,4 @@
 #include<iostream>
-/* se necesita un programa el cual maneje el proceso de produccion de una fabrica 
-de distintoa tipos de productos en un n numero de meses 
-
- el programa debe solicitar al usuaario la cantidad de productos a demas 
- del nombre de cada producto y su produccion por cada mes 
- 
- 	el menu que el usuario tendra sera el siguiente
-1 producto con mayor produccion
-2 mes en que mayor produccion hubo 
-3 promedio de producion por producto 
-4 promedio de produccion por mes  */
 #include <stdlib.h>
 #include <time.h>
 using namespace std;

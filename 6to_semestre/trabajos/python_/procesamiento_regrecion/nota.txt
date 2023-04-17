@@ -1,0 +1,19 @@
+materia: procesamiento numerico
+
+descripcion 
+se busca usar la regrecion linea , de segundo grado y polinomio de lagrange
+de una serie de datos 
+
+profesores que evaluaron 
+    ocar porto 
+        ponia a escojer los datos y a aplicar las regreciones 
+            estudiantes
+                - abel 50
+                - alejandra 50
+                - fernado 30
+    juan carlos mantilla 
+        puso 3 problemas y mando puntos especificos para ellos 
+        donde pedia usar une regrecion especifica 
+            estudiantes
+                - rafael 70
+

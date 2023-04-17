@@ -1,0 +1,25 @@
+
+
+Paso 1: Determinar la máscara de subred
+Antes de comenzar a crear subredes, debemos determinar la máscara de subred que utilizaremos. En este caso, utilizaremos una máscara de subred de 255.255.255.0, lo que significa que utilizaremos 24 bits para la dirección de la red y 8 bits para la dirección del host.
+
+Paso 2: Calcular el número de subredes
+El siguiente paso es determinar cuántas subredes queremos crear. Digamos que queremos crear 4 subredes.
+
+Paso 3: Determinar el número de hosts por subred
+Una vez que hemos decidido cuántas subredes queremos crear, debemos determinar cuántos hosts queremos tener en cada subred. En este caso, queremos tener 30 hosts en cada subred.
+
+Paso 4: Calcular el número de bits de host
+Ahora debemos determinar cuántos bits necesitaremos para la dirección de host en cada subred. Como queremos tener 30 hosts en cada subred, necesitamos al menos 5 bits para la dirección de host (2^5 = 32, y 32-2 = 30 hosts posibles).
+
+Paso 5: Crear las subredes
+Ahora podemos comenzar a crear nuestras subredes. Para hacer esto, tomamos los bits de host adicionales que necesitamos y los agregamos a los bits de red existentes. En este caso, agregamos 5 bits de host a los 24 bits de red existentes, lo que nos da una máscara de subred de 255.255.255.224 (ya que hay 8 bits de host en un byte, 5 bits nos llevan a 32, que es el valor de un octeto de la máscara de subred).
+
+Paso 6: Asignar direcciones IP a las subredes
+Finalmente, podemos asignar direcciones IP a cada una de nuestras subredes. Las direcciones IP para cada subred serán:
+
+Subred 1: 192.5.5.0/27 (30 hosts)
+Subred 2: 192.5.5.32/27 (30 hosts)
+Subred 3: 192.5.5.64/27 (30 hosts)
+Subred 4: 192.5.5.96/27 (30 hosts)
+Espero que esto te haya ayudado a entender el proceso de subneteo y cómo aplicarlo en un ejemplo práctico.
