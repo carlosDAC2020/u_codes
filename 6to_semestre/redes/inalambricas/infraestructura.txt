@@ -1,0 +1,8 @@
+SSID
+    red-infta
+
+ips
+    network : 192.168.1.0
+    acces point : 192.168.1.1
+    ltp carlos : 192.168.1.2
+    ltp harold : 192.168.1.3

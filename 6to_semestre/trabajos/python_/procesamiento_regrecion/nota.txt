@@ -11,6 +11,7 @@ profesores que evaluaron
                 - abel 50
                 - alejandra 50
                 - fernado 30
+                - gamero 50
     juan carlos mantilla 
         puso 3 problemas y mando puntos especificos para ellos 
         donde pedia usar une regrecion especifica 
