@@ -1,0 +1,21 @@
+
+Router_RIPv1(AS-10)
+
+R_BGP(AS-30)
+
+Router_OSPF(AS-20)
+
+
+WAN  AS-10 -> AS-30
+    Network: 192.169.10.0/30
+        subnet mask  255.255.255.252
+        outer_RIPv1(AS-10) ---------------> R_BGP(AS-30)
+        Serial 0/1/0:                       Serial 0/1/1:
+        IP: 192.169.10.1/30                IP: 192.169.10.2/30
+ 
+ WAN  AS-30 -> AS-20
+    Network: 192.169.20.0/30
+        subnet mask  255.255.255.252
+        R_BGP(AS-30) --------------------> Router_OSPF(AS-20)
+        Serial 0/1/0:                      Serial 0/1/1:
+        IP: 192.169.20.1/30                IP: 192.169.20.2/30

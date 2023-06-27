@@ -1,3 +1,6 @@
+
+
+    redes lan 
 R1
     network : 192.168.1.0
         router : 192.168.1.1

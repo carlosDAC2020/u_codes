@@ -5,13 +5,13 @@
 using namespace std;
 
 class octal {
+  friend ostream& operator<<(ostream& os, const octal&);
 public:
-    octal(int decimal = 0);
+    octal(long = 0);
     octal operator+(const octal& op2) const;
-    friend std::ostream& operator<<(std::ostream& os, const octal& n);
-
 private:
-    char oct[100];
+    int oct[11];
 };
 
 #endif // OCTAL_H
+
