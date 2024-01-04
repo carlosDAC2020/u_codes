@@ -133,8 +133,8 @@ def evaluator_open_metod(metod, xi, es, name_metod, f=0, df=0, x2=0 ):
     """
     funcion que evalua el metodo conrrespondiente ya sea:
         # punto fijo 
-        # Newton-Raphson 
         # secante
+        # Newton-Raphson
 
     esata funcion recive algunos parametros necesarios para la evaluacion segundo el metodo
     en cuestion las esenciales seran :

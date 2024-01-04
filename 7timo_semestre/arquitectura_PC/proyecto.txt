@@ -1,0 +1,27 @@
+Desarrollo de un Compilador Python a RISC-V: 
+Habilitando Eficiencia en Sistemas Emergentes
+Equipo de trabajo:
+•	Carlos Daniel Agamez Palomino 
+•	Andrés Camilo Cardona Arellano
+•	Andrés Caicedo Gómez
+•	Harold Styven Lagares De Voz
+Línea de investigación:
+La línea de investigación que aborda este proyecto es la necesidad de habilitar la ejecución eficiente de scripts escritos en Python en plataformas que utilizan la 
+arquitectura RISC-V. A pesar de la omnipresencia de Python 
+en el desarrollo de software, la mayoría de las 
+implementaciones existentes están orientadas a arquitecturas 
+más comunes, como x86 y ARM. La falta de un compilador 
+dedicado para traducir scripts de Python a instrucciones 
+específicas de la arquitectura RISC-V representa un 
+obstáculo significativo para el desarrollo de software en sistemas que adoptan esta arquitectura. 
+El desarrollo de un compilador Python a RISC-V abordaría la 
+brecha existente en el ecosistema de desarrollo para esta 
+arquitectura, permitiendo la ejecución de scripts de Python 
+en esta arquitectura. Esto sería especialmente valioso en el 
+contexto de sistemas embebidos y dispositivos IoT que 
+utilizan la arquitectura RISC-V. El proyecto contribuiría al 
+avance de la investigación en compiladores y facilitaría el 
+desarrollo de software más eficiente en términos de 
+rendimiento y consumo de recursos en estos sistemas 
+específicos.
+

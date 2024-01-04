@@ -1,44 +1,34 @@
-print(" eu metodo desea usar para encontrar la raiz de la funcion ")
-print("      F(x)= e^(-x) - x   ")
-print(" 1 Punto fijo ")
-print(" 2 Newton-Raphson ")
+import math
 
-metodo=int(input(" escoja el metodo (1/2):"))
-xi=float(input(" ingrese un valor de xi para probar el metodo:"))
+# Datos proporcionados
+P0 = 13000000  # Tamaño inicial de la población en enero de 1981
+I = 383000     # Cantidad de personas adicionales debido a nacimientos en 1981
 
-if(metodo==1):
-    print("\n Metodo Punto fijo ")
-else:
-    print("\n Metodo Newton-Raphson ")
+# Función que representa la ecuación P(t) - P0 * e^(kt) - (I/k) * (e^(kt) - 1)
+def equation(k):
+    return P0 * math.exp(k) + (I / k) * (math.exp(k) - 1)
 
- 
-error_esperado=0.0005
+# Derivada de la función
+def derivative(k):
+    return P0 * math.exp(k) + (I / k) * math.exp(k) - (I / k**2) * (math.exp(k) - 1)
 
-xi1_anteriro=0
- 
-i=1
-print("-"*35)
-print("i   ","  xi  ","  xi+1  ","  er  ")
-print("-"*35)
-while True:
-    # evaluamos xi con el metodod correspondiente 
-    if metodo==1:
-        xi1= 2.7182**(-xi)
-    else:
-        xi1= xi - ( ((2.7182**(-xi))-xi) / ((-2.7182**(-xi))-1) )
-    # obtenemos el error relativo
-    error_relativo=abs((xi1-xi1_anteriro)/xi1)
-    # vamos imprimiendo los resultados de la evaluacion
-    print(i,"   ",round(xi,4),"   ", round(xi1,4),"   ", round(error_relativo,4))
-    # guardamos el valor enterior 
-    xi1_anteriro=xi1
-    # vamos asignando lso valores obtenidos en xi1 a xi
-    xi=xi1
+# Valor de inicio para el método de Newton-Raphson
+k_guess = 0.1  # Puedes elegir otro valor inicial si lo deseas
 
-    if error_relativo<error_esperado:
+# Parámetros para controlar la convergencia del método
+max_iterations = 100
+tolerance = 1e-8
+
+# Implementación del método de Newton-Raphson
+k_new = k_guess
+for i in range(max_iterations):
+    k_old = k_new
+    k_new = k_old - equation(k_old) / derivative(k_old)
+    
+    # Verificar si la diferencia entre las aproximaciones sucesivas es menor que la tolerancia
+    if abs(k_new - k_old) < tolerance:
         break
-    # vamos contando las iteraciones 
-    i+=1
-print("-"*35)
 
-print("la raiz de la funcion es:",round(xi,4))
+# Resultado
+tasa_crecimiento = k_new
+print("Tasa de crecimiento por nacimiento:", tasa_crecimiento)

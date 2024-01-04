@@ -137,8 +137,6 @@ Justificaciones:
 
 """
 funcion para obtener las regreciones i hacer su correspondiente analisis 
-
-
 """
 def analisis_de_regreciones(y, xa, xb):
 
@@ -157,7 +155,7 @@ def analisis_de_regreciones(y, xa, xb):
     y_pred1 = regression1.predict(xa["datos"].values.reshape(-1, 1))
     
 
-    # Regresión lineal y1 vs x2
+    # Regresión lineal y vs xa
     regression2 = LinearRegression()
     regression2.fit(xb["datos"].values.reshape(-1, 1), y["datos"].values.reshape(-1, 1))
     y_pred2 = regression2.predict(xb["datos"].values.reshape(-1, 1))
@@ -171,7 +169,7 @@ def analisis_de_regreciones(y, xa, xb):
     print(f'MSE {y["var"]} vs {xb["var"]}', mse2)
     print(' y = {}x + {}'.format(np.round(regression2.coef_[0], 2), np.round(regression2.intercept_, 2)))
 
-    # Gráfico y1 vs x1 y y1 vs x2
+    # Gráfico y1 vs xa y y vs xb
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
 
     # Gráfico y1 vs x1
@@ -195,7 +193,7 @@ def analisis_de_regreciones(y, xa, xb):
 
 
 """
-(2.0 puntos) Modelo de regresión lineal univariable y₁ (x1), y1(x2) -----------------------------------------------------------
+(2.0 puntos) Modelo de regresión lineal univariable y1(x1), y1(x2) -----------------------------------------------------------
 """
 print("\n Modelo de regresión lineal univariable y1(x2), Y1(x2) ")
 analisis_de_regreciones(y1,x1,x2)

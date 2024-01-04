@@ -1,0 +1,32 @@
+El administrador de una transportadora logística, esta analizando hacer la 
+compra de automotores (tráiler con contenedores), para esto analiza las 
+ventajas y desventajas para hacer presupuesto a largo plazo en cuanto a 
+reparaciones: los resultados se muestran en la siguiente tabla:
+
+            ,          tipo de fallas
+    marca   ,Frenos, Caja de cambios, Tracción,	Total
+------------------------------------------------------
+Kenworth	, 3    ,                ,	4     ,	
+Truck INN	, 	   ,  10            , 	      , 23
+A.R.M Force	, 5	   ,  7		        ,         , 18
+Total	    , 17   ,	            ,	      , 54
+------------------------------------------------------
+
+Tablas de contingencia:
+1.	Cuentas con las 3 marcas en tu inventario y dentro de 5 años cada marca de camiones presenta fallas, calcula la probabilidad de que la falla sea:
+a.	De la marca Truck INN
+b.	De la marca A.R.M Force y presente falla en la tracción.
+c.	En los frenos.
+d.	De la caja de cambios y sea en la marca Kenworth.
+e.	En las tracciones.
+
+2.	Escribe el espacio muestral de lanzar 4 monedas corrientes al aire. Luego con base a esto, calcula la probabilidad de:
+a.	Obtener 3 caras y un sello.
+b.	2 caras y dos sellos.
+c.	El primer y el tercer resultado sea sello.
+
+3.	Supongamos que se tiene una urna con 15 balotas rojas, 12 balotas azules y 8 balotas verdes. Calcular:
+•	La probabilidad de sacar una balota roja en el primer intento.
+•	Si en un primer intento se saco una balota de color rojo y se dejo afuera, calcula la probabilidad de sacar una balota verde.
+
+4. En el ejercicio anterior, suponga ahora que se saca una balota de la urna, no se reemplaza y luego sacas otra balota. Calcula la probabilidad de sacar una balota roja y luego una balota azul.: (Recomendación:Como los eventos son independiente,debes usar la formula  P(A∩B)=P(A)*P(B),donde A y B son los eventos sacar roja y sacar azul).  

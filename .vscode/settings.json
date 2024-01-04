@@ -10,5 +10,6 @@
         "cmath": "cpp",
         "fstream": "cpp",
         "sstream": "cpp"
-    }
+    },
+    "editor.inlineSuggest.showToolbar": "onHover"
 }
