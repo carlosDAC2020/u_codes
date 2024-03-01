@@ -1,0 +1,25 @@
+800 metros (Damas - Hombres).
+ Hombres
+       nombre                Club         Fecha de nacimiento  
+Alfonso Miguel Verbel Orozco       Los olivos           9/10/2009       
+ Jhon guardo Pupo          Armonia             31/5/1999       
+Isaac David ospino Marquez        Armonia             14/11/2007      
+Isaac David ospino Marquez  Armonia de atletismo       14/11/2007      
+Isaac David ospino Marquez        Armonia             14/11/2007      
+Isaac David ospino Marquez        Armonia             14/11/2007      
+Luis Alberto Garcia Vargas        Armonia             23/6/2008       
+Luis Alberto Garcia Vargas     Club armonia           23/6/2008       
+VICTOR DIONEL LOPEZ CASTRO    SSONATHLETICS          19/1/2009       
+Sheiner barrios taborda        Armonia             16/8/2005       
+Yonatan David messino Maldonado        Armonia             26/3/2003       
+Isaac David ospino Marquez  Armonia de atletismo       14/11/2007      
+
+ Mujere
+       nombre                Club         Fecha de nacimiento  
+Chery Camila Pomares Miranda      Los olivos             9/7/2008       
+Chery Camila Pomares Miranda       Los olivos            9/7/2008       
+Briyith VERTEL LEON        Armonia             16/7/2005       
+DIANASOFIA RIOS TORRES    SSONATHLTETICS         18/11/2007      
+DULCE MARIA BARRIOS MIRANDA    SSONATHLETICS          2/12/2009       
+Briyith VERTEL LEON      Armonia clud          16/7/2005       
+Ana Gabriela salas pastrana    Armonia club            7/6/2007       

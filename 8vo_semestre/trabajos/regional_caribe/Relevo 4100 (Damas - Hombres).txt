@@ -1,0 +1,34 @@
+Relevo 4*100 (Damas - Hombres).
+ Hombres
+       nombre                Club         Fecha de nacimiento  
+Jose Alfredo Rodriguez perez  Club de atletismo Armonia club       26/11/2002      
+Yonatan David Messino Maldonado      Armonia club          26/3/2003       
+Isaac David ospino Marquez        Armonia             14/11/2007      
+Isaac David ospino Marquez        Armonia             14/11/2007      
+        Jhon               Armonia              1/8/2006       
+NICOLAS EDUARDO SUSA REINERO     ARMONIA CLUB          26/11/2002      
+DANIEL ALEJANDRO TORRES LORE       ARMONIA             10/8/2006       
+Jose Alfredo Rodriguez perez  Club de atletismo Armonia club       26/11/2002      
+Jose Alfredo Rodriguez Perez  Club de atletismo armonia club       26/11/2002      
+Juan Daniel Gutierrez Meza    Armonia club           11/9/2003       
+DUVAN HABITT HERRERA FIGUEROA    SSONATHLETICS           4/6/2007       
+GEAN LUCAS HERNANDEZ CASTILLO    SSONATHLETICS          23/9/2008       
+MANUEL ESTEBAN NEGRETE CANATE    SSONATHLETICS          12/3/2007       
+ESTEBAN ANDRES RODRIGUEZ MEJIA    SSONATHLETICS          19/5/2009       
+NICOLAS EDUARDO SUSA REINERO     Armonia club          26/11/2002      
+Isaac David ospino Marquez  Armonia de atletismo       14/11/2007      
+Jhon Manjarrez Chico     Armonia club           12/9/1998       
+
+ Mujere
+       nombre                Club         Fecha de nacimiento  
+Brichelis  Birbragher Castro        Armonia             20/10/2006      
+Brichelis Birbragher Castro        Armonia             20/10/2006      
+Fhary Ordonez Ruiz       Armonia club          19/7/2005       
+Karla Esther Barrios Cardona     Armonia Club           18/2/2005       
+Elizabeth julio oviedo       Armonia             23/3/2024       
+stefany michelle julio mendoza      armonia club          23/2/2005       
+DIAZ TORRES SHAYLIN     SSONATHLETICS          29/2/2008       
+MHAYFERG ABBIT SEGOVIA RODRIGUEZ    SSONATHLETICS          22/10/2007      
+MELISA MILENA POMARES ALMEIDA    SSONATHLETICS          18/4/2008       
+Fhary Ordonez Ruiz       Armonia club          19/7/2005       
+Chanel Carolina Murillo Campino        Armonia             4/12/2006       

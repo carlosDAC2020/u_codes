@@ -1,0 +1,34 @@
+400 metros (Damas - Hombres).
+ Hombres
+       nombre                Club         Fecha de nacimiento  
+Yonatan David Messino Maldonado      Armonia club          26/3/2003       
+ Jhon guardo Pupo          Armonia             31/5/1999       
+Isaac David ospino Marquez        Armonia             14/11/2007      
+Isaac David ospino Marquez        Armonia             14/11/2007      
+ Luis Julio Ligardo        Arjona               7/9/2007       
+DANIEL ALEJANDRO TORRES LORE       ARMONIA             10/8/2006       
+Danyer David valencia gomez  Club de atletismo armonia club      26/10/2024      
+Luis Alberto Garcia Vargas     Club armonia           23/6/2008       
+MARCOS GABRIEL GAMBIN MORENO    SSONATHLETICS          29/1/2006       
+MELANY LUCIA RODRIGUEZ FUENTES    SSONATHLETICS          12/9/2008       
+MATHIAS FERNADEZ LUNA    SSONATHLETICS          18/10/2008      
+Jessith Medrano Leon  Club deportivo cognitivo los delfines       19/8/1999       
+Sheiner barrios taborda        Armonia             16/8/2005       
+Yonatan David messino Maldonado        Armonia             26/3/2003       
+Marlon David Acevedo marrugo       Armonia              7/8/2008       
+Isaac David ospino Marquez  Armonia de atletismo       14/11/2007      
+Ever Luis Zapata Castilla     Armonia club           15/3/1996       
+Yainer andres duran ballestas        Armonia             17/5/2005       
+
+ Mujere
+       nombre                Club         Fecha de nacimiento  
+Karla Esther Barrios Cardona     Armonia Club           18/2/2005       
+saray social licona gonzalez       armonia              4/7/2008       
+Briyith VERTEL LEON        Armonia             16/7/2005       
+DULCE MARIA BARRIOS MIRANDA    SSONATHLETICS          2/12/2009       
+MHAYFERG ABBIT SEGOVIA RODRIGUEZ    SSONATHLETICS          22/10/2007      
+Karla Barrios Cardona     Armonia club           29/2/2024       
+Briyith VERTEL LEON      Armonia clud          16/7/2005       
+saray sofia licona Gonzalez       Armonia              4/7/2008       
+  Aristela Parra        Armonia Club           31/5/2004       
+  Aristela Parra        Armonia Club           31/5/2004       

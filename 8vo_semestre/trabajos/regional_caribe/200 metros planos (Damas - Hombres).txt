@@ -1,0 +1,57 @@
+200 metros planos (Damas - Hombres).
+ Hombres
+       nombre                Club         Fecha de nacimiento  
+Yean Escorcia Caicedo         Arjona             10/6/2007       
+Jean manuel escorcia caicedo Club atlear, arjona       16/1/2007       
+Jose Alfredo Rodriguez perez  Club de atletismo Armonia club       26/11/2002      
+Yonatan David Messino Maldonado      Armonia club          26/3/2003       
+        Jhon               Armonia              1/8/2006       
+NICOLAS EDUARDO SUSA REINERO     ARMONIA CLUB          26/11/2002      
+DANIEL ALEJANDRO TORRES LORE       ARMONIA             10/8/2006       
+Danyer David valencia gomez  Club de atletismo armonia club      26/10/2024      
+Angel Gabriel Luna Sarabia        FRENAZU             12/7/2006       
+Jorge Luis Perez perea        Armonia             20/11/2002      
+Jorge Luis Perez perea        Armonia             20/11/2002      
+Jose Alfredo Rodriguez perez  Club de atletismo Armonia club       26/11/2002      
+Jose Alfredo Rodriguez perez  Club de atletismo Armonia club       26/11/2002      
+Jose Alfredo Rodriguez Perez  Club de atletismo armonia club       26/11/2002      
+Jhon jairo lujan pianeta     Armonia club            1/8/2006       
+Juan Carlos Anaya barrios  Clup deportivo armonia        4/2/2004       
+Jose Luis Castro Gomez     Armonia club           8/11/2003       
+Juan Daniel Gutierrez Meza      Armonia club          11/9/2003       
+MARCOS GABRIEL GAMBIN MORENO    SSONATHLETICS          29/1/2006       
+SEBASTIAN ENRIQUE DIAZ GUZMAN    SSONATHLETICS           8/9/2003       
+DUVAN HABITT HERRERA FIGUEROA    SSONATHLETICS           4/6/2007       
+MELANY LUCIA RODRIGUEZ FUENTES    SSONATHLETICS          12/9/2008       
+VICTOR DIONEL LOPEZ CASTRO    SSONATHLETICS          19/1/2009       
+ESTEBAN ANDRES RODRIGUEZ MEJIA    SSONATHLETICS          19/5/2009       
+Ronald toro Villalba        Armonia             12/11/2005      
+NICOLAS EDUARDO SUSA REINERO     Armonia club          26/11/2002      
+Sheiner barrios taborda        Armonia             16/8/2005       
+Marlon David Acevedo marrugo       Armonia              7/8/2008       
+Ever Luis Zapata Castilla     Armonia club           15/3/1996       
+Yainer andres duran ballestas        Armonia             17/5/2005       
+Jhon jairo lujan pianeta     Club armonia            1/8/2005       
+Jhon Manjarrez Chico      Armonia club          12/9/1998       
+
+ Mujere
+       nombre                Club         Fecha de nacimiento  
+Brichelis  Birbragher Castro        Armonia             20/10/2006      
+Brichelis Birbragher Castro        Armonia             20/10/2006      
+Fhary Ordonez Ruiz       Armonia club          19/7/2005       
+Karla Esther Barrios Cardona     Armonia Club           18/2/2005       
+Elizabeth julio oviedo       Armonia             23/3/2024       
+stefany michelle julio mendoza      armonia club          23/2/2005       
+Buendi Nayerli Recuero Cerda Club Deportivo Asociacion de Sordos de Bolivar      24/3/2002       
+Buendi Nayerli Recuero Cerda Club deportivo asociacion de Sordos de Bolivar       24/3/2002       
+saray social licona gonzalez       armonia              4/7/2008       
+DIAZ TORRES SHAYLIN     SSONATHLETICS          29/2/2008       
+DIANASOFIA RIOS TORRES    SSONATHLTETICS         18/11/2007      
+DULCE MARIA BARRIOS MIRANDA    SSONATHLETICS          2/12/2009       
+MHAYFERG ABBIT SEGOVIA RODRIGUEZ    SSONATHLETICS          22/10/2007      
+Sheila Paola berrio valdes       Armonia             10/7/2006       
+Karla Esther Barrios Cardona      Armonia club          29/2/2024       
+saray sofia licona Gonzalez       Armonia              4/7/2008       
+Danna meibys banquez ortiz        armonia             26/6/2004       
+Stefany michelle julio mendozq      Armonia club          23/2/0005       
+Fhary Ordonez Ruiz       Armonia club          19/7/2005       
