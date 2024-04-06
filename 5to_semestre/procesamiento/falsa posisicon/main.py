@@ -105,6 +105,7 @@ def falsa_posicion(xl, xu, es, xv):
         if er<es:
             raiz=xr
             break
+        
 
         i+=1
         

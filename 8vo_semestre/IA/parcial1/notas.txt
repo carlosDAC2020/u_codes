@@ -1,0 +1,183 @@
+sistema de agendamiento de citas 
+
+entidades
+    # cliente
+        nombre
+
+    # anfitrion 
+        nombre
+    
+    # fecha
+        dia, mes, año
+
+    # hora
+        hora, minutos
+
+    # canal
+        [telefono, chat, correo]
+
+    # cita
+        fecha, hora, cliente, anfitrion
+
+logica
+    1 ingresar usuarios, anfitrion, fecha , hora y canal
+    2 validar que no haya alguna cita ese mismo dia y hora 
+    3 validar que la hora ingresada este en el rango impuesto de 14:00 a 18:00
+    3 encontrar las citas del anfitrion en ese dia concreto y ver q la hora ingresada cumpla:
+        65min ------------ hora ingresada ------------ 65min
+         |-----no citas-----|          |-----no citas-----|
+    4 se agrega la cita a los registros 
+    5 ce procede a hacer consultas de citas
+
+
+restricciones
+    - descanso entre citas para el anfitrionde 15 min
+    - tiempo maximo de citas de 50 min 
+        
+    - el anfitrion solo recive citas 5 horas al dia 
+        hora_valida(H, M) : valida si la hora de una cita esta en el rango de tiempo de atencion 
+
+
+agregar_cita(U, A, D, M, Y, H, MIN, C) :-
+        % Verifica que la cita no exista
+    \+ cita(U, A, D, M, Y, H, MIN, C),
+        % Convierte el átomo H en un número entero HA
+    atom_number(HA, H),
+        % Convierte el átomo MIN en un número entero MINA
+    atom_number(MINA, MIN),
+        % validamos que las hora ingresada de la cita este en el horario disponible de atencion
+    hora_valida(H, MIN),
+        $ asignamos una hora de finalizacion de cita para q cumpla con las restricciones 
+    hora_finalizacion_cita(H, MIN, HF, MINF),
+        % agregamos los echos 
+    assertz(atiende(A, U)),
+    assertz(fecha(D, M, Y)),
+    assertz(hora(H, MIN)),
+    assertz(hora(HF, MINF)),
+    assertz(canal(C, U)),
+        % agregamos la cita
+    assertz(cita(usuario(U), anfitrion(A), fecha(D, M, Y), hora(H, MIN), hora(HF, MINF), canal(C))).
+
+
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 14,
+MI = 30,
+HF = 15,
+MF = 35,
+C = correo ;
+
+U = alberto,
+A = jose,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 15,
+MI = 0,
+HF = 16,
+MF = 5,
+C = whatsapp ;
+
+U = estela,
+A = ana,
+D = 2,
+M = 9,
+Y = 2024,
+HI = 16,
+MI = 30,
+HF = 17,
+MF = 35,
+C = correo ;
+U = estela,
+A = ana,
+D = 2,
+M = 9,
+Y = 2024,
+HI = 16,
+MI = 56,
+HF = 18,
+MF = 1,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 14,
+MI = 30,
+HF = 15,
+MF = 35,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 13,
+MI = 30,
+HF = 14,
+MF = 35,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 13,
+MI = 35,
+HF = 14,
+MF = 40,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 17,
+MI = 35,
+HF = 18,
+MF = 40,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 14,
+MI = 30,
+HF = 15,
+MF = 35,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 13,
+MI = 30,
+HF = 14,
+MF = 35,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 13,
+MI = 35,
+HF = 14,
+MF = 40,
+C = correo ;
+U = juan,
+A = andres,
+D = 1,
+M = 9,
+Y = 2024,
+HI = 17,
+MI = 35,
+HF = 18,
+MF = 40,
+C = correo.
