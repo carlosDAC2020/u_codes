@@ -1,0 +1,39 @@
+Instructions
+El objetivo de este reto es que los estudiantes desarrollen un modelo de Machine Learning utilizando modelos de lenguaje pre-entrenados (LLM) base, sin ajuste fino (fine-tuning). Los estudiantes deberán trabajar con un conjunto de datos de opiniones de lugares turísticos y clasificar los comentarios en tres categorías: positivo, neutro y negativo. El modelo será desarrollado y evaluado con dos conjuntos de datos. Primero, los datos de entrenamiento, este conjunto de datos contiene 1,143 instancias, distribuidas entre opiniones positivas, neutras y negativas. Datos de prueba, es un conjunto separado para evaluar el rendimiento del modelo. Se deben utilizar uno de los siguientes modelos base, sin ajuste fino (fine-tuning): DistilBERT base model (uncased), BERT base model (uncased), RoBERTa base model, GPT-2.
+
+Pasos del Reto:
+    Carga y Exploración de Datos:
+        - Cargar los datos de entrenamiento y prueba proporcionados.
+        - Realizar una exploración inicial de los datos para entender la distribución y características de los comentarios.
+    Preprocesamiento de Datos:
+        - Aplicar técnicas de preprocesamiento de texto, como la tokenización, eliminación de stop words, y lematización, si es necesario. 
+        - Asegurarse de que los comentarios cumplan con las restricciones de longitud y contenido nominal.
+    Desarrollo del Modelo:
+        - Seleccionar uno de los modelos de lenguaje pre-entrenados permitidos.
+        - Utilizar el modelo base para extraer características relevantes de los comentarios.
+        - Desarrollar un clasificador (por ejemplo, una red neuronal, SVM, etc.) que utilice estas características para predecir la clase de cada comentario.
+    Entrenamiento y Validación:
+        - Entrenar el modelo utilizando el conjunto de datos de entrenamiento.
+        - Evaluar el modelo utilizando técnicas de validación cruzada para asegurar su desempeño.
+    Evaluación en Datos de Prueba:
+        - Evaluar el modelo entrenado en el conjunto de datos de prueba.
+        - Reportar métricas de rendimiento como la precisión, recall, F1-score, y la matriz de confusión.
+    Informe y Presentación:
+        - Descripción del enfoque y justificación de las decisiones de diseño.
+        - Resultados del preprocesamiento y análisis exploratorio.
+        - Descripción del modelo y del proceso de entrenamiento.
+        - Evaluación del rendimiento del modelo en los datos de prueba.
+        - Presentar los hallazgos y la metodología seguida.
+        
+Entregables
+    - Código fuente utilizado para el preprocesamiento, desarrollo y evaluación del modelo ejemplo: resultado.ipynb.
+    - Informe detallado en formato PDF (No Código)
+    - Archivo con las predicciones del modelo sobre el conjunto de datos de prueba. 
+
+Evaluación
+Los proyectos serán evaluados con base a:
+    - Creatividad y justificación del enfoque utilizado.
+    - Correctitud y claridad del código fuente.
+    - Calidad del preprocesamiento y análisis exploratorio.
+    - Rendimiento del modelo en los datos de prueba.
+    - Claridad y profundidad del informe presentado.

@@ -6,10 +6,6 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression  
  # para crear características polinómicas
 from sklearn.preprocessing import PolynomialFeatures 
- # para calcular el error cuadrático medio
-from sklearn.metrics import mean_squared_error      
-# para generar un polinomio de lagrange
-from scipy.interpolate import lagrange 
 # para manejo de horas 
 import datetime
 

@@ -1,0 +1,52 @@
+Instrucciones
+
+El RT-IoT2022, un conjunto de datos propio derivado de una infraestructura IoT en tiempo real, se presenta como un recurso completo que integra una amplia gama de dispositivos IoT y sofisticadas metodologías de ataque a la red. Este conjunto de datos abarca tanto comportamientos de red normales como adversos, proporcionando una representación general de escenarios del mundo real. Al incorporar datos de dispositivos IoT como ThingSpeak-LED, Wipro-Bulb y MQTT-Temp, así como escenarios de ataque simulados que incluyen ataques SSH de fuerza bruta, ataques DDoS mediante Hping y Slowloris, y patrones Nmap, RT-IoT2022 ofrece una perspectiva detallada de la compleja naturaleza del tráfico de red. Los atributos bidireccionales del tráfico de red se capturan meticulosamente utilizando la herramienta de monitorización de red Zeek y el plugin Flowmeter. Los investigadores pueden aprovechar el conjunto de datos RT-IoT2022 para mejorar las capacidades de los sistemas de detección de intrusiones (IDS), fomentando el desarrollo de soluciones de seguridad robustas y adaptables para redes IoT en tiempo real.
+
+El conjunto de datos RT-IoT2022 se generó en un entorno de pruebas controlado diseñado para simular el tráfico realista de la red IoT. Esta red incluía dispositivos "víctimas" y "atacantes", utilizando Wireshark para capturar tanto el tráfico legítimo como el malicioso en archivos PCAP. Los datos abarcan desde comunicaciones normales de dispositivos como Raspberry Pi y Amazon Alexa hasta tráfico de ataque generado intencionadamente, como ataques de fuerza bruta SSH y DDoS.
+
+Las características clave se extrajeron y refinaron utilizando herramientas como CICFlowmeter, eliminando atributos irrelevantes y codificando variables categóricas. Los datos se estandarizaron y se aplicaron etiquetas para diferenciar entre tráfico normal y anómalo, facilitando el aprendizaje supervisado para un modelo de autoencoder destinado a la detección de anomalías.
+
+El objetivo del conjunto de datos RT-IoT2022 y del desarrollo del modelo de autocodificador cuantificado (QAE) era optimizar la detección de intrusiones para que funcionara de forma eficiente en dispositivos IoT con recursos limitados. Las variantes del modelo QAE, como QAE-u8, se optimizaron mediante técnicas de poda, agrupación y cuantización, mostrando una reducción significativa en el uso de recursos computacionales en pruebas realizadas en dispositivos como la Raspberry Pi. A continuación se describen las características del conjunto de datos.
+
+Números de puerto (id.orig_p, id.resp_p): Estas características enteras indican probablemente los puertos de origen y destino en la comunicación de red, proporcionando información sobre los servicios que se están utilizando.
+
+Protocolo (proto): Característica categórica que especifica el protocolo de comunicación, como TCP, UDP, ICMP, etc.
+
+Servicio (service): Podría denotar el servicio o protocolo de la capa de aplicación en uso (como HTTP, FTP, DNS), y podría etiquetarse erróneamente como continuo si se pretende que sea categórico.
+
+Duración del flujo (flow_duration): Característica continua que representa el tiempo que ha durado un flujo, normalmente medido en segundos o milisegundos.
+
+Recuento de paquetes (fwd_pkts_tot, bwd_pkts_tot): Características enteras que cuentan el número total de paquetes enviados en la dirección de avance o retroceso.
+
+Recuento de paquetes de datos (fwd_data_pkts_tot, bwd_data_pkts_tot): Similar a los recuentos de paquetes pero excluyendo posiblemente ciertos tipos de paquetes, centrándose en los que contienen carga útil de datos.
+
+Paquetes por segundo (fwd_pkts_per_sec, bwd_pkts_per_sec, flow_pkts_per_sec): Características continuas que representan la velocidad de transmisión de paquetes en cualquier dirección o para todo el flujo.
+
+Características de la carga útil (fwd_pkts_payload., bwd_pkts_payload., flow_pkts_payload.*): Estas características continuas pueden incluir estadísticas sobre el tamaño de los datos de carga útil en paquetes, como mínimo, máximo, total, media y desviación estándar.
+
+Tiempos entre llegadas (fwd_iat., bwd_iat., flow_iat.*): Estas características continuas capturan probablemente el tiempo entre paquetes en un flujo, proporcionando información sobre la temporización y potencialmente la ráfaga de tráfico.
+
+Banderas (flow_FIN_flag_count, flow_SYN_flag_count, etc.): Recuentos enteros de varios indicadores TCP dentro de un flujo, importantes para comprender la naturaleza del establecimiento, la gestión y la interrupción de la sesión.
+
+Bytes por segundo (payload_bytes_per_second): Una característica continua que podría representar la velocidad a la que se transmiten los datos de carga útil en el flujo.
+
+Características de subflujo (fwd_subflow_pkts, bwd_subflow_pkts, etc.): Podrían referirse a estadísticas sobre subflujos, que son secuencias más pequeñas de paquetes dentro del flujo principal, de nuevo medidas en métricas continuas como bytes y paquetes.
+
+Características masivas (fwd_bulk_bytes, bwd_bulk_bytes, etc.): Características continuas que podrían referirse a la transmisión de grandes cantidades de datos en un flujo, a menudo utilizadas para detectar la exfiltración de datos o las transferencias de archivos de gran tamaño.
+
+Tiempos activos/de inactividad (activo.min, activo.max, etc.): Características continuas que capturan los periodos activos y ociosos dentro de un flujo, que pueden indicar los patrones de comportamiento de la comunicación.
+
+Tamaño de ventana (fwd_init_window_size, bwd_init_window_size, fwd_last_window_size): Características enteras que podrían estar relacionadas con el tamaño de las ventanas TCP, importantes para el control de flujo y la gestión de la congestión en las redes.
+
+Tipo de ataque (Attack_type): Característica categórica de destino que probablemente indica el tipo de ataque o comportamiento normal, utilizada para la clasificación en un IDS.
+
+Para desarrollar el algoritmo necesario, debe utilizar las siguientes condiciones.
+    - Definir la pregunta y la hipótesis.
+    - Realizar un análisis descriptivo.
+    - Extraer aleatoriamente el 20% de las instancias del conjunto de forma equilibrada para la validación del modelo entrenado.
+    - Utilizar el conjunto de datos restante para el entrenamiento.
+    - Emplear el método de clasificación (Softmax).
+    - Utilizar técnicas de validación cruzada para evitar el sobreentrenamiento.
+    - Emplear las métricas necesarias para determinar el mejor de los dos algoritmos.
+    - Emplear otras técnicas que se consideren necesarias para mejorar el rendimiento del modelo seleccionado.
+    - Exportar un fichero .csv de resultados con las clasificaciones predichas.

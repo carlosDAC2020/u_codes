@@ -1,0 +1,13 @@
+
+1 informacion del dataset
+    se obtiene caracteristicas de todas las variables q conforman el dataset
+    entre las cuales se identofoca que hay 24624 filas y en ese conjunto de datos hay cero valores nulos para todas las variables
+2 identificacion de variables donde obtuvimos 
+    - se obtiene 3 variables de tipo categorico(Attack_type, proto, service) y 81 de tipo numerico 
+    - asignamos un id numerico a cada categoria de las variables correspondientes
+3 tomamos como variable objetivo a predecir la Attack_type
+    - analisis de correlacion con las demas variables 
+
+4 normalizacion de los datos 
+
+5 definicion del modelo 

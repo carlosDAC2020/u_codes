@@ -23,7 +23,7 @@ y = list(df["Velocidad"])
 
         nB0     +  sum(x)B1  + sum(x^2)B2 = sum(y)
      sum(x)B0   + sum(x^2)B1 + sum(x^3)B2 = sum(x*y)
-    sum(x^2)B0  + sum(x^3)B1 + sum(x^4)B2 = sum((y^2)*y)
+    sum(x^2)B0  + sum(x^3)B1 + sum(x^4)B2 = sum((x^2)*y)
      
     pasamos a obtener las sumatorias señaladas en el sistema anterior 
 """

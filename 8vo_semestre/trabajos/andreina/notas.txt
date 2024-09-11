@@ -1,0 +1,4 @@
+6   Alley          8 non-null      object
+
+25  MasVnrType     50 non-null     object
+

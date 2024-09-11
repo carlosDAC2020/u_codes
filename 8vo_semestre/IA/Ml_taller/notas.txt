@@ -1,0 +1,55 @@
+Instructions
+The RT-IoT2022, a proprietary dataset derived from a real-time IoT infrastructure, is introduced as a comprehensive resource integrating a diverse range of IoT devices and sophisticated network attack methodologies. This dataset encompasses both normal and adversarial network behaviours, providing a general representation of real-world scenarios. Incorporating data from IoT devices such as ThingSpeak-LED, Wipro-Bulb, and MQTT-Temp, as well as simulated attack scenarios involving Brute-Force SSH attacks, DDoS attacks using Hping and Slowloris, and Nmap patterns, RT-IoT2022 offers a detailed perspective on the complex nature of network traffic. The bidirectional attributes of network traffic are meticulously captured using the Zeek network monitoring tool and the Flowmeter plugin. Researchers can leverage the RT-IoT2022 dataset to advance the capabilities of Intrusion Detection Systems (IDS), fostering the development of robust and adaptive security solutions for real-time IoT networks.
+
+The RT-IoT2022 dataset was generated within a controlled testbed environment designed to simulate realistic IoT network traffic. This network included "victim" and "attacker" devices, using Wireshark to capture both legitimate and malicious traffic in PCAP files. The data ranges from normal device communications like Raspberry Pi and Amazon Alexa to intentionally generated attack traffic, such as SSH brute-force and DDoS attacks.
+Key features were extracted and refined using tools like CICFlowmeter, eliminating irrelevant attributes and encoding categorical variables. The data was standardized, and labels were applied to differentiate between normal and anomalous traffic, facilitating supervised learning for an autoencoder model aimed at anomaly detection.
+
+The purpose of the RT-IoT2022 dataset and the Quantized Autoencoder (QAE) model development was to optimize intrusion detection to function efficiently on resource-constrained IoT devices. QAE model variants, such as QAE-u8, were optimized using pruning, clustering, and quantization techniques, showing a significant reduction in computational resource usage in tests on devices like the Raspberry Pi. The features of the dataset are described below.
+
+Port Numbers (id.orig_p, id.resp_p): These integer features likely indicate the source and destination ports in network communication, providing information about the services being used.
+
+Protocol (proto): A categorical feature that specifies the communication protocol, such as TCP, UDP, ICMP, etc.
+
+Service (service): This could denote the application layer service or protocol in use (like HTTP, FTP, DNS), and it might be mislabeled as continuous if it is meant to be categorical.
+
+Flow Duration (flow_duration): A continuous feature representing the length of time a flow lasted, usually measured in seconds or milliseconds.
+
+Packet Counts (fwd_pkts_tot, bwd_pkts_tot): Integer features counting the total number of packets sent in the forward or backward direction.
+
+Data Packet Counts (fwd_data_pkts_tot, bwd_data_pkts_tot): Similar to the packet counts but possibly excluding certain types of packets, focusing on those containing data payload.
+
+Packets Per Second (fwd_pkts_per_sec, bwd_pkts_per_sec, flow_pkts_per_sec): Continuous features representing the rate of packet transmission in either direction or for the entire flow.
+
+Payload Features (fwd_pkts_payload., bwd_pkts_payload., flow_pkts_payload.*): These continuous features might include statistics on the size of the payload data in packets, such as minimum, maximum, total, average, and standard deviation.
+
+Inter-Arrival Times (fwd_iat., bwd_iat., flow_iat.*): These continuous features likely capture the time between packets in a flow, providing insight into the timing and potentially the burstiness of traffic.
+
+Flags (flow_FIN_flag_count, flow_SYN_flag_count, etc.): Integer counts of various TCP flags within a flow, important for understanding the nature of the session establishment, management, and teardown.
+
+Bytes Per Second (payload_bytes_per_second): A continuous feature that could represent the rate at which payload data is transmitted in the flow.
+
+Subflow Features (fwd_subflow_pkts, bwd_subflow_pkts, etc.): These could refer to statistics about sub-flows, which are smaller sequences of packets within the main flow, again measured in continuous metrics like bytes and packets.
+
+Bulk Features (fwd_bulk_bytes, bwd_bulk_bytes, etc.): Continuous features that might refer to the transmission of large amounts of data in a flow, often used to detect data exfiltration or large file transfers.
+
+Active/Idle Times (active.min, active.max, etc.): Continuous features capturing the active and idle periods within a flow, which can indicate the behavioral patterns of the communication.
+
+Window Size (fwd_init_window_size, bwd_init_window_size, fwd_last_window_size): Integer features that might relate to TCP window sizes, important for flow control and congestion management in networks.
+
+Attack Type (Attack_type): A categorical target feature likely indicating the type of attack or normal behavior, used for classification in an IDS.
+
+
+
+
+
+To develop the required algorithm you should use the following conditions.
+Define question and hypothesis.
+Perform a descriptive analysis.
+Randomly extract 20% of the instances from the set in a balanced way for validation of the trained model.
+Use the remaining data set for training.
+Employ classification method (Softmax).
+Use cross-validation techniques to avoid overtraining.
+Employ the necessary metrics to determine the best of the two algorithms.
+Employ other techniques deemed necessary to improve the performance of the selected model.
+Export a results .csv file with predicted rankings.
+
