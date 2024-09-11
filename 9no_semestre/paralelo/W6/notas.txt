@@ -1,0 +1,359 @@
+COMPARACION PARCIAL Y PARALELO USANDO FUNCION MAUNELA Y LA DE NUMPY 
+import os
+import random
+import time
+import threading
+import numpy as np
+
+def multiplicacion_de_submatriz(A, B, C, row_start, row_end):
+    """
+    Multiplica un rango de filas de la matriz A con la matriz B y almacena el resultado en la matriz C.
+    """
+    columnas_A = len(A[0])
+    columnas_B = len(B[0])
+
+    for i in range(row_start, row_end):
+        for j in range(columnas_B):
+            for k in range(columnas_A):
+                C[i][j] += A[i][k] * B[k][j]
+
+def multiplicacion_de_matrices(A, B):
+    """
+    Realiza la multiplicación de dos matrices utilizando código hecho a mano.
+    """
+    filas_A = len(A)
+    columnas_A = len(A[0])
+    columnas_B = len(B[0])
+    C = [[0 for _ in range(columnas_B)] for _ in range(filas_A)]
+
+    for i in range(filas_A):
+        for j in range(columnas_B):
+            for k in range(columnas_A):
+                C[i][j] += A[i][k] * B[k][j]
+
+    return C
+
+def parallel_multiplicacion_de_matrices(A, B, num_threads):
+    """
+    Realiza la multiplicación de dos matrices utilizando múltiples hilos.
+    """
+    filas_A = len(A)
+    columnas_B = len(B[0])
+    C = [[0 for _ in range(columnas_B)] for _ in range(filas_A)]
+
+    thread_list = []
+    step = filas_A // num_threads
+    for i in range(num_threads):
+        row_start = i * step
+        row_end = (i + 1) * step if i != num_threads - 1 else filas_A
+        thread = threading.Thread(target=multiplicacion_de_submatriz, args=(A, B, C, row_start, row_end))
+        thread_list.append(thread)
+        thread.start()
+
+    for thread in thread_list:
+        thread.join()
+
+    return C
+
+def measure_time(func, *args):
+    start_time = time.time()
+    result = func(*args)
+    end_time = time.time()
+    return result, end_time - start_time
+
+if __name__ == "__main__":
+    num_cores = os.cpu_count()
+    n = 500  # Tamaño de la matriz
+
+    # Generar las matrices
+    matrixA = [[random.randint(1, 100) for _ in range(n)] for _ in range(n)]
+    matrixB = [[random.randint(1, 100) for _ in range(n)] for _ in range(n)]
+    
+    # Convertir matrices a numpy arrays para la multiplicación con numpy
+    matrixA_np = np.array(matrixA)
+    matrixB_np = np.array(matrixB)
+
+    # Multiplicación en serie (hecho a mano)
+    print("Ejecutando multiplicación de matrices en serie (hecho a mano)...")
+    _, serial_time_manual = measure_time(multiplicacion_de_matrices, matrixA, matrixB)
+    print(f"Tiempo de ejecución en serie (hecho a mano): {serial_time_manual:.4f} segundos")
+
+    # Multiplicación en serie (numpy)
+    print("Ejecutando multiplicación de matrices en serie (numpy)...")
+    _, serial_time_numpy = measure_time(np.dot, matrixA_np, matrixB_np)
+    print(f"Tiempo de ejecución en serie (numpy): {serial_time_numpy:.4f} segundos")
+
+    # Multiplicación en paralelo (hecho a mano)
+    print(f"Ejecutando multiplicación de matrices en paralelo (hecho a mano) con {num_cores} hilos...")
+    _, parallel_time_manual = measure_time(parallel_multiplicacion_de_matrices, matrixA, matrixB, num_cores)
+    print(f"Tiempo de ejecución en paralelo (hecho a mano): {parallel_time_manual:.4f} segundos")
+    print(f"Speedup (hecho a mano): {serial_time_manual / parallel_time_manual:.2f}x")
+
+    # Multiplicación en paralelo (numpy, utilizando múltiples hilos)
+    print("Ejecutando multiplicación de matrices en paralelo (numpy, utilizando np.dot)...")
+    _, parallel_time_numpy = measure_time(np.dot, matrixA_np, matrixB_np) 
+    print(f"Tiempo de ejecución en paralelo (numpy, utilizando np.dot): {parallel_time_numpy:.4f} segundos")
+
+    # Comparación de speedups
+    print(f"Speedup (numpy serial vs numpy paralelo): {serial_time_numpy / parallel_time_numpy:.2f}x")
+    print(f"Speedup (manual serial vs numpy serial): {serial_time_manual / serial_time_numpy:.2f}x")
+    print(f"Speedup (manual paralelo vs numpy paralelo): {parallel_time_manual / parallel_time_numpy:.2f}x")
+
+----------------------------------------------------------------------------------------
+
+ejecucion con n = 500 a 2500 para ver como evoluciona el speed up usando a su ves join 
+
+tamaño de matrices:  500
+generando matrices
+---
+Tiempo con 1 hilos: 0.280000 segundos
+Tiempo con 8 hilos: 0.308929 segundos
+ Spedd up obtenido de : 0.906
+
+Resultado con 1 hilos:
+[[1309978. 1318294. 1310911. ... 1301497. 1299888. 1377616.]
+ [1288331. 1273542. 1297206. ... 1301901. 1272328. 1395909.]
+ [1214840. 1225572. 1247397. ... 1273176. 1230383. 1324017.]
+ ...
+ [1242085. 1239053. 1269520. ... 1238753. 1241228. 1343405.]
+ [1294626. 1276672. 1292101. ... 1322331. 1282972. 1331285.]
+ [1276701. 1246664. 1280388. ... 1297043. 1254972. 1370693.]]
+
+Resultado con 8 hilos:
+[[1309978. 1318294. 1310911. ... 1301497. 1299888. 1377616.]
+ [1288331. 1273542. 1297206. ... 1301901. 1272328. 1395909.]
+ [1214840. 1225572. 1247397. ... 1273176. 1230383. 1324017.]
+ ...
+ [1242085. 1239053. 1269520. ... 1238753. 1241228. 1343405.]
+ [1294626. 1276672. 1292101. ... 1322331. 1282972. 1331285.]
+ [1276701. 1246664. 1280388. ... 1297043. 1254972. 1370693.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+tamaño de matrices:  1000
+generando matrices
+---
+Tiempo con 1 hilos: 3.977663 segundos
+Tiempo con 8 hilos: 1.948285 segundos
+ Spedd up obtenido de : 2.042
+
+Resultado con 1 hilos:
+[[2484560. 2406380. 2527172. ... 2528336. 2541379. 2509370.]
+ [2487383. 2424622. 2543417. ... 2543525. 2576055. 2546159.]
+ [2456576. 2459522. 2528016. ... 2567490. 2529485. 2521448.]
+ ...
+ [2553937. 2525903. 2589436. ... 2604166. 2614999. 2578530.]
+ [2436029. 2433795. 2516000. ... 2517541. 2539922. 2501968.]
+ [2570041. 2503010. 2543557. ... 2580376. 2589755. 2555453.]]
+
+Resultado con 8 hilos:
+[[2484560. 2406380. 2527172. ... 2528336. 2541379. 2509370.]
+ [2487383. 2424622. 2543417. ... 2543525. 2576055. 2546159.]
+ [2456576. 2459522. 2528016. ... 2567490. 2529485. 2521448.]
+ ...
+ [2553937. 2525903. 2589436. ... 2604166. 2614999. 2578530.]
+ [2436029. 2433795. 2516000. ... 2517541. 2539922. 2501968.]
+ [2570041. 2503010. 2543557. ... 2580376. 2589755. 2555453.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+tamaño de matrices:  1500
+generando matrices
+---
+Tiempo con 1 hilos: 45.792544 segundos
+Tiempo con 8 hilos: 21.878308 segundos
+ Spedd up obtenido de : 2.093
+
+Resultado con 1 hilos:
+[[3726710. 3839348. 3775963. ... 3766380. 3696922. 3822730.]
+ [3688449. 3832195. 3738955. ... 3719042. 3675402. 3828234.]
+ [3810234. 3823846. 3774432. ... 3682660. 3652236. 3874594.]
+ ...
+ [3831684. 3907085. 3839224. ... 3797185. 3677603. 3849964.]
+ [3864072. 3929598. 3855259. ... 3866728. 3791430. 3925269.]
+ [3854883. 3863679. 3824747. ... 3789832. 3767137. 3897186.]]
+
+Resultado con 8 hilos:
+[[3726710. 3839348. 3775963. ... 3766380. 3696922. 3822730.]
+ [3688449. 3832195. 3738955. ... 3719042. 3675402. 3828234.]
+ [3810234. 3823846. 3774432. ... 3682660. 3652236. 3874594.]
+ ...
+ [3831684. 3907085. 3839224. ... 3797185. 3677603. 3849964.]
+ [3864072. 3929598. 3855259. ... 3866728. 3791430. 3925269.]
+ [3854883. 3863679. 3824747. ... 3789832. 3767137. 3897186.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+tamaño de matrices:  2000
+generando matrices
+---
+Tiempo con 1 hilos: 141.037479 segundos
+Tiempo con 8 hilos: 84.285298 segundos
+ Spedd up obtenido de : 1.673
+
+Resultado con 1 hilos:
+[[5112070. 4985624. 5077872. ... 5208133. 5143712. 5128030.]
+ [5056790. 4910301. 4980893. ... 5053626. 5066145. 4983125.]
+ [5249442. 5096434. 5163299. ... 5200132. 5193224. 5228686.]
+ ...
+ [5324536. 5126847. 5223258. ... 5313649. 5267685. 5274174.]
+ [5322692. 5173033. 5192625. ... 5318067. 5245313. 5308575.]
+ [5306591. 5148272. 5133935. ... 5258382. 5228882. 5202522.]]
+
+Resultado con 8 hilos:
+[[5112070. 4985624. 5077872. ... 5208133. 5143712. 5128030.]
+ [5056790. 4910301. 4980893. ... 5053626. 5066145. 4983125.]
+ [5249442. 5096434. 5163299. ... 5200132. 5193224. 5228686.]
+ ...
+ [5324536. 5126847. 5223258. ... 5313649. 5267685. 5274174.]
+ [5322692. 5173033. 5192625. ... 5318067. 5245313. 5308575.]
+ [5306591. 5148272. 5133935. ... 5258382. 5228882. 5202522.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+tamaño de matrices:  2500
+generando matrices
+---
+Tiempo con 1 hilos: 307.887736 segundos
+Tiempo con 8 hilos: 152.538150 segundos
+ Spedd up obtenido de : 2.018
+
+Resultado con 1 hilos:
+[[6488746. 6431256. 6548737. ... 6360518. 6364335. 6296861.]
+ [6330414. 6331740. 6461126. ... 6213624. 6292591. 6196676.]
+ [6389952. 6271602. 6450521. ... 6205817. 6305342. 6148640.]
+ ...
+ [6492580. 6338698. 6481153. ... 6245242. 6406280. 6281488.]
+ [6395678. 6320477. 6402942. ... 6275432. 6241419. 6181650.]
+ [6542321. 6420191. 6567457. ... 6355284. 6337115. 6244560.]]
+
+Resultado con 8 hilos:
+[[6488746. 6431256. 6548737. ... 6360518. 6364335. 6296861.]
+ [6330414. 6331740. 6461126. ... 6213624. 6292591. 6196676.]
+ [6389952. 6271602. 6450521. ... 6205817. 6305342. 6148640.]
+ ...
+ [6492580. 6338698. 6481153. ... 6245242. 6406280. 6281488.]
+ [6395678. 6320477. 6402942. ... 6275432. 6241419. 6181650.]
+ [6542321. 6420191. 6567457. ... 6355284. 6337115. 6244560.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+
+-------------------------------------------------------------------------------------
+lo mimso q lo anterior pero si join 
+
+tamaño de matrices:  500
+generando matrices
+---
+Tiempo con 1 hilos: 0.005253 segundos
+Tiempo con 8 hilos: 0.569754 segundos
+ Spedd up obtenido de : 0.009
+
+Resultado con 1 hilos:
+[[1339192. 1344842. 1252980. ... 1313382. 1370865. 1364370.]
+ [1229335. 1245853. 1170060. ... 1219860. 1260543. 1262662.]
+ [1254029. 1251722. 1214597. ... 1222092. 1291766. 1301019.]
+ ...
+ [1192581. 1202605. 1178867. ... 1195122. 1255619. 1226447.]
+ [1329656. 1320361. 1284586. ... 1271530. 1369441. 1319489.]
+ [1240163. 1213939. 1180516. ... 1213781. 1289404. 1247123.]]
+
+Resultado con 8 hilos:
+[[1339192. 1344842. 1252980. ... 1313382. 1370865. 1364370.]
+ [1229335. 1245853. 1170060. ... 1219860. 1260543. 1262662.]
+ [1254029. 1251722. 1214597. ... 1222092. 1291766. 1301019.]
+ ...
+ [1192581. 1202605. 1178867. ... 1195122. 1255619. 1226447.]
+ [1329656. 1320361. 1284586. ... 1271530. 1369441. 1319489.]
+ [1240163. 1213939. 1180516. ... 1213781. 1289404. 1247123.]]
+Las matrices resultantes tannto en serial como en paralelo  son iguales.
+tamaño de matrices:  1000
+generando matrices
+---
+Tiempo con 1 hilos: 0.046644 segundos
+Tiempo con 8 hilos: 1.388519 segundos
+ Spedd up obtenido de : 0.034
+
+Resultado con 1 hilos:
+[[2599839. 2644791. 2564571. ... 2554201. 2613234. 2532905.]
+ [2547971. 2522257. 2543038. ... 2472894. 2564005. 2522522.]
+ [2479311. 2523743. 2467158. ... 2456278. 2589247. 2454379.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+
+Resultado con 8 hilos:
+[[2599839. 2644791. 2564571. ... 2554201. 2613234. 2532905.]
+ [2547971. 2522257. 2543038. ... 2472894. 2564005. 2522522.]
+ [2479311. 2523743. 2467158. ... 2456278. 2589247. 2454379.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+Las matrices resultantes con 8 hilos son diferentes.
+tamaño de matrices:  1500
+generando matrices
+---
+Tiempo con 1 hilos: 0.081783 segundos
+Tiempo con 8 hilos: 1.626701 segundos
+ Spedd up obtenido de : 0.050
+
+Resultado con 1 hilos:
+[[3885143. 3905132. 3920978. ... 3986723. 4065551. 3898714.]
+ [3797693. 3822495. 3849903. ... 3917065. 3970899. 3836610.]
+ [3772634. 3865642. 3876592. ... 3900322. 3974691. 3775423.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+
+Resultado con 8 hilos:
+[[3885143. 3905132. 3920978. ... 3986723. 4065551. 3898714.]
+ [3797693. 3822495. 3849903. ... 3917065. 3970899. 3836610.]
+ [3772634. 3865642. 3876592. ... 3900322. 3974691. 3775423.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+Las matrices resultantes con 8 hilos son diferentes.
+tamaño de matrices:  2000
+generando matrices
+---
+Tiempo con 1 hilos: 0.357534 segundos
+Tiempo con 8 hilos: 3.761830 segundos
+ Spedd up obtenido de : 0.095
+
+Resultado con 1 hilos:
+[[4956912. 5001242. 5061741. ... 5079291. 5023284. 4998473.]
+ [5055183. 5142241. 5099003. ... 5099675. 5105715. 5054681.]
+ [4947397. 5022009. 5069065. ... 5116497. 5114547. 4934539.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+
+Resultado con 8 hilos:
+[[4956912. 5001242. 5061741. ... 5079291. 5023284. 4998473.]
+ [5055183. 5142241. 5099003. ... 5099675. 5105715. 5054681.]
+ [4947397. 5022009. 5069065. ... 5116497. 5114547. 4934539.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+Las matrices resultantes con 8 hilos son diferentes.
+tamaño de matrices:  2500
+generando matrices
+---
+Tiempo con 1 hilos: 0.667323 segundos
+Tiempo con 8 hilos: 6.819073 segundos
+ Spedd up obtenido de : 0.098
+
+Resultado con 1 hilos:
+[[6358041. 6413183. 6505822. ... 6421565. 6349238. 6369903.]
+ [6399836. 6393199. 6547254. ... 6368969. 6323936. 6375639.]
+ [6318286. 6473486. 6446388. ... 6392996. 6315913. 6395022.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+
+Resultado con 8 hilos:
+[[6358041. 6413183. 6505822. ... 6421565. 6349238. 6369903.]
+ [6399836. 6393199. 6547254. ... 6368969. 6323936. 6375639.]
+ [6318286. 6473486. 6446388. ... 6392996. 6315913. 6395022.]
+ ...
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]
+ [      0.       0.       0. ...       0.       0.       0.]]
+Las matrices resultantes con 8 hilos son diferentes.

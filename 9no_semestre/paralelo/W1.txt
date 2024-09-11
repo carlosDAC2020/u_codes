@@ -1,0 +1,29 @@
+Workshop 1
+
+Estudiante 
+    Carlos Daniel Agamez Palomino - T00059006
+
+# PLANTEAMIENTO DE PROBLEMATICA 
+Actualmente, en la universidad es muy común, especialmente en las materias de ciencias básicas, que muchos estudiantes se retiren de estas asignaturas por diversas razones. La principal razón es que, debido a la dificultad de estas materias, los estudiantes no logran cumplir con sus asignaciones, lo que lleva a que la nota necesaria para aprobar en el último corte sea muy alta y, según los estudiantes, "difícil de alcanzar", lo que resulta en la decisión de retirarse de la materia.
+
+Esta decisión afecta al estudiante en gran medida, ya que puede retrasar el desarrollo de su plan de carrera. Por esta razón, es crucial implementar estrategias para reducir el número de retiros.
+
+PROPUESTA DE SOLUCIÓN
+Implementar un sistema de alerta temprana autónomo integrado en la plataforma de Savio, que esté constantemente detectando potenciales retiros. Este sistema proporcionará datos relevantes para la aplicación de estrategias que ayuden a disminuir el número de retiros.
+
+    # Medio para la obtención de datos:
+     - Publicación de las notas tanto del primer como del segundo corte en Baner.
+     - Implementar la calculadora de notas, actualmente disponible en GitHub Pages y ampliamente usada por los estudiantes, como una herramienta más de Savio. Esto permitirá tener más trazabilidad y un perfil más completo de los estudiantes que podrían potencialmente retirar una materia.
+    
+    # Análisis de los datos
+    Por medio de los datos recolectados, podemos generar las siguientes métricas:
+     - Materias más propensas a retiros.
+     - Perfiles de estudiantes más propensos a retiros, considerando elementos de referencia como el semestre en el que están, carrera, etc.
+
+Teniendo en cuenta los datos obtenidos y el análisis que se pueda hacer de estos, se pueden aplicar diversas estrategias con el fin de mitigar los retiros académicos, además de los cursos de refuerzo que actualmente se implementan. Una nueva estrategia podría ser un seguimiento personalizado según el perfil del estudiante.
+
+
+# RESULTADOS ESPERADOS 
+La implementación del sistema de alerta temprana autónomo en la plataforma de Savio representa una estrategia innovadora que opera en paralelo con el proceso educativo habitual. Este enfoque paralelo permite detectar de manera continua y anticipada los posibles retiros académicos mediante la recolección y análisis de datos automatizados. Al integrar herramientas como la publicación de notas y la calculadora de notas dentro de Savio, se establece un sistema robusto para identificar materias y perfiles de estudiantes con mayor riesgo de retirarse.
+
+Este sistema proporciona a los administradores educativos información precisa y oportuna, permitiéndoles implementar estrategias personalizadas y preventivas. Al hacerlo, se fomenta un apoyo proactivo que puede mitigar los factores que llevan a los estudiantes a tomar la decisión de retirarse. Esta aproximación no solo fortalece el acompañamiento académico, sino que también optimiza los recursos institucionales al mejorar la eficiencia del proceso de retención estudiantil.

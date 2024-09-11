@@ -1,0 +1,342 @@
+vercion 1 
+--------------------------------------------------------------------------------------
+
+import os
+import random
+import threading
+import time
+
+# Función para calcular la suma de cuadrados en un subconjunto de números
+def sum_of_squares(sublist, result, index, lock):
+    local_sum = sum(x * x for x in sublist)
+    with lock:
+        result[index] = local_sum
+
+# Función para dividir la lista en subconjuntos según el número de trabajadores
+def divide_list(nums, num_workers):
+    size_subset = len(nums) // num_workers
+    subsets = [nums[i:i + size_subset] for i in range(0, len(nums), size_subset)]
+    
+    # Asegurarse de que el último subrango incluya los elementos restantes
+    if len(subsets) > num_workers:
+        subsets[-2].extend(subsets[-1])
+        subsets.pop()
+    
+    return subsets
+
+# Función para medir el tiempo de ejecución
+def measure_time(func, *args):
+    start_time = time.time()
+    result = func(*args)
+    end_time = time.time()
+    return result, end_time - start_time
+
+# Función paralela para calcular la suma de cuadrados usando hilos
+def parallel_sum_of_squares(nums, num_workers):
+    subsets = divide_list(nums, num_workers)
+    result = [0] * num_workers
+    threads = []
+    lock = threading.Lock()
+
+    for i in range(num_workers):
+        thread = threading.Thread(target=sum_of_squares, args=(subsets[i], result, i, lock))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+    return sum(result)
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    num_cores = os.cpu_count()
+    print(f"Número de núcleos (cores): {num_cores}")
+    cant_nums = 1000000
+    nums = [random.randint(1, 100) for _ in range(cant_nums)]
+
+    
+    for num_workers in [1, num_cores*4]: 
+        par_result, par_time = measure_time(parallel_sum_of_squares, nums, num_workers)
+        print(f"Suma paralela con {num_workers} hilos: {par_result}, Tiempo: {par_time:.4f} segundos")
+--------------------------------------------------------------------------------------
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3385929351, Tiempo: 0.3418 segundos
+Suma paralela con 8 hilos: 3385929351, Tiempo: 0.2706 segundos
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3386434270, Tiempo: 0.3590 segundos
+Suma paralela con 8 hilos: 3386434270, Tiempo: 0.3310 segundos
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3389669281, Tiempo: 0.3172 segundos
+Suma paralela con 8 hilos: 3389669281, Tiempo: 0.3409 segundos
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3380304693, Tiempo: 0.2670 segundos
+Suma paralela con 8 hilos: 3380304693, Tiempo: 0.2490 segundos
+
+actualmente se prendeta una posible sobrecarga de hilos voya ver si bajandola puede mejorar 
+
+--------------------------------------------------------------------------------------------
+
+version 2 ----------------------------------------------------------------------------------
+
+import os
+import random
+import threading
+import time
+import matplotlib.pyplot as plt
+
+# Función para calcular la suma de cuadrados en un subconjunto de números
+def sum_of_squares(sublist, result, index, lock):
+    local_sum = sum(x * x for x in sublist)
+    with lock:
+        result[index] = local_sum
+
+# Función para dividir la lista en subconjuntos según el número de trabajadores
+def divide_list(nums, num_workers):
+    size_subset = len(nums) // num_workers
+    subsets = [nums[i:i + size_subset] for i in range(0, len(nums), size_subset)]
+    
+    # Asegurarse de que el último subrango incluya los elementos restantes
+    if len(subsets) > num_workers:
+        subsets[-2].extend(subsets[-1])
+        subsets.pop()
+    
+    return subsets
+
+# Función para medir el tiempo de ejecución
+def measure_time(func, *args):
+    start_time = time.time()
+    result = func(*args)
+    end_time = time.time()
+    return result, end_time - start_time
+
+# Función paralela para calcular la suma de cuadrados usando hilos
+def parallel_sum_of_squares(nums, num_workers):
+    subsets = divide_list(nums, num_workers)
+    result = [0] * num_workers
+    threads = []
+    lock = threading.Lock()
+
+    for i in range(num_workers):
+        thread = threading.Thread(target=sum_of_squares, args=(subsets[i], result, i, lock))
+        threads.append(thread)
+        thread.start()
+
+    for thread in threads:
+        thread.join()
+
+    return sum(result)
+
+# Reporte de resultados
+report = {}
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    num_cores = os.cpu_count()
+    print(f"Número de núcleos (cores): {num_cores}")
+    cant_nums = 1000000
+    nums = [random.randint(1, 100) for _ in range(cant_nums)]
+
+    speedups = []
+    threads = [1, num_cores, num_cores * 2, num_cores * 4]
+
+    for num_workers in threads:
+        par_result, time_execution = measure_time(parallel_sum_of_squares, nums, num_workers)
+        print(f"Suma paralela con {num_workers} hilos: {par_result}, Tiempo: {time_execution:.4f} segundos")
+        
+        if num_workers == 1:
+            report["secuencial"] = time_execution
+        else:
+            speedup = report["secuencial"] / time_execution
+            print("speedUp: ",speedup)
+            speedups.append((num_workers, speedup))
+            report[f"{num_workers} hilos"] = time_execution
+
+    # Graficar el speedup
+    workers, speedup_values = zip(*speedups)
+    plt.plot(workers, speedup_values, marker='o')
+    plt.title("Speedup vs Número de Hilos")
+    plt.xlabel("Número de Hilos")
+    plt.ylabel("Speedup")
+    plt.grid(True)
+    plt.show()
+
+-----------------------------------------------------------------------------------------
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3383429691, Tiempo: 0.3380 segundos
+Suma paralela con 2 hilos: 3383429691, Tiempo: 0.2465 segundos
+speedUp:  1.3710458745762877
+Suma paralela con 4 hilos: 3383429691, Tiempo: 0.2750 segundos
+speedUp:  1.2291127508737067
+Suma paralela con 8 hilos: 3383429691, Tiempo: 0.2752 segundos
+speedUp:  1.228117198017246
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3385446293, Tiempo: 0.2790 segundos
+Suma paralela con 2 hilos: 3385446293, Tiempo: 0.2425 segundos
+speedUp:  1.150430645904956
+Suma paralela con 4 hilos: 3385446293, Tiempo: 0.2813 segundos
+speedUp:  0.9919951036448854
+Suma paralela con 8 hilos: 3385446293, Tiempo: 0.3125 segundos
+speedUp:  0.8928021020571962
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3385705050, Tiempo: 0.2810 segundos
+Suma paralela con 2 hilos: 3385705050, Tiempo: 0.2440 segundos
+speedUp:  1.151669720288262
+Suma paralela con 4 hilos: 3385705050, Tiempo: 0.2460 segundos
+speedUp:  1.1422936202175862
+Suma paralela con 8 hilos: 3385705050, Tiempo: 0.3226 segundos
+speedUp:  0.8710990161065254
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3382903613, Tiempo: 0.2757 segundos
+Suma paralela con 2 hilos: 3382903613, Tiempo: 0.2957 segundos
+speedUp:  0.9325106331512427
+Suma paralela con 4 hilos: 3382903613, Tiempo: 0.2864 segundos
+speedUp:  0.9628640744366962
+Suma paralela con 8 hilos: 3382903613, Tiempo: 0.2665 segundos
+speedUp:  1.0346764027794801
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3381986551, Tiempo: 0.2813 segundos
+Suma paralela con 2 hilos: 3381986551, Tiempo: 0.2500 segundos
+speedUp:  1.124904999346796
+Suma paralela con 4 hilos: 3381986551, Tiempo: 0.2656 segundos
+speedUp:  1.0589339942495977
+Suma paralela con 8 hilos: 3381986551, Tiempo: 0.3125 segundos
+speedUp:  0.8999962616565744
+
+se obtiene q es mejor trabajar con el numero de hilos correspiondiente al numero de cores fisicos de mi pc 
+
+------------------------------------------------------------------------------------------
+
+version 3 -------------------------------------------------------------------------------
+
+import os
+import random
+import time
+from concurrent.futures import ThreadPoolExecutor
+import matplotlib.pyplot as plt
+
+# Función para calcular la suma de cuadrados en un subconjunto de números
+def sum_of_squares(sublist):
+    return sum(x * x for x in sublist)
+
+# Función para dividir la lista en subconjuntos según el número de trabajadores
+def divide_list(nums, num_workers):
+    size_subset = len(nums) // num_workers
+    subsets = [nums[i:i + size_subset] for i in range(0, len(nums), size_subset)]
+    
+    # Asegurarse de que el último subrango incluya los elementos restantes
+    if len(subsets) > num_workers:
+        subsets[-2].extend(subsets[-1])
+        subsets.pop()
+    
+    return subsets
+
+# Función para medir el tiempo de ejecución
+def measure_time(func, *args):
+    start_time = time.time()
+    result = func(*args)
+    end_time = time.time()
+    return result, end_time - start_time
+
+# Función paralela para calcular la suma de cuadrados usando hilos
+def parallel_sum_of_squares(nums, num_workers):
+    subsets = divide_list(nums, num_workers)
+    
+    with ThreadPoolExecutor(max_workers=num_workers) as executor:
+        results = list(executor.map(sum_of_squares, subsets))
+    
+    return sum(results)
+
+# Reporte de resultados
+report = {}
+
+# Ejemplo de uso
+if __name__ == "__main__":
+    num_cores = os.cpu_count()
+    print(f"Número de núcleos (cores): {num_cores}")
+    cant_nums = 1000000
+    nums = [random.randint(1, 100) for _ in range(cant_nums)]
+
+    speedups = []
+    threads = [1, num_cores, num_cores * 2, num_cores * 4]
+
+    for num_workers in threads:
+        par_result, time_execution = measure_time(parallel_sum_of_squares, nums, num_workers)
+        print(f"Suma paralela con {num_workers} hilos: {par_result}, Tiempo: {time_execution:.4f} segundos")
+        
+        if num_workers == 1:
+            report["secuencial"] = time_execution
+        else:
+            speedup = report["secuencial"] / time_execution
+            print("speedUp: ",speedup)
+            speedups.append((num_workers, speedup))
+            report[f"{num_workers} hilos"] = time_execution
+
+    # Graficar el speedup
+    workers, speedup_values = zip(*speedups)
+    plt.plot(workers, speedup_values, marker='o')
+    plt.title("Speedup vs Número de Hilos")
+    plt.xlabel("Número de Hilos")
+    plt.ylabel("Speedup")
+    plt.grid(True)
+    plt.show()
+
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3382666601, Tiempo: 0.2590 segundos
+Suma paralela con 2 hilos: 3382666601, Tiempo: 0.2440 segundos
+speedUp:  1.0614843440832897
+Suma paralela con 4 hilos: 3382666601, Tiempo: 0.2380 segundos
+speedUp:  1.0882903045159973
+Suma paralela con 8 hilos: 3382666601, Tiempo: 0.2714 segundos
+speedUp:  0.954302640906779
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3382474248, Tiempo: 0.2520 segundos
+Suma paralela con 2 hilos: 3382474248, Tiempo: 0.2390 segundos
+speedUp:  1.0544267227447397
+Suma paralela con 4 hilos: 3382474248, Tiempo: 0.2440 segundos
+speedUp:  1.032819579766324
+Suma paralela con 8 hilos: 3382474248, Tiempo: 0.2910 segundos
+speedUp:  0.8659961901640687
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3384946249, Tiempo: 0.2889 segundos
+Suma paralela con 2 hilos: 3384946249, Tiempo: 0.2768 segundos
+speedUp:  1.0437278239002377
+Suma paralela con 4 hilos: 3384946249, Tiempo: 0.2721 segundos
+speedUp:  1.0618685507958747
+Suma paralela con 8 hilos: 3384946249, Tiempo: 0.3179 segundos
+speedUp:  0.909023062821963
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W4>py main.py
+Número de núcleos (cores): 2
+Suma paralela con 1 hilos: 3387638532, Tiempo: 0.2360 segundos
+Suma paralela con 2 hilos: 3387638532, Tiempo: 0.2480 segundos
+speedUp:  0.9516143762888333
+Suma paralela con 4 hilos: 3387638532, Tiempo: 0.3240 segundos
+speedUp:  0.7283835243473942
+Suma paralela con 8 hilos: 3387638532, Tiempo: 0.2702 segundos
+speedUp:  0.873352408732333
+
+no c tiene mejoras conciderabkes (mejor segur manteniendo el nuemro de hilos igual al de cores fisicos  )
