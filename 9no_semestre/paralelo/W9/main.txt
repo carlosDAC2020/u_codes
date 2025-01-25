@@ -1,0 +1,167 @@
+"""
+Estudiante
+- Carlos Daniel Agamez Palomino T00059006
+"""
+import multiprocessing
+import random
+import os
+from colorama import Fore, Style, init
+
+# Inicializar colorama
+init(autoreset=True)
+
+def deposit(balance, lock, process):
+    """Función para realizar un depósito."""
+    deposit_amount = random.uniform(1, 100)  # Generar un depósito aleatorio
+    with lock:
+        balance.value += deposit_amount
+        print(f"Process:{process} - Deposit: {Fore.GREEN}${deposit_amount:.2f}{Style.RESET_ALL}    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+
+def withdraw(balance, lock, process):
+    """Función para realizar un retiro."""
+    withdraw_amount = random.uniform(1, 300)  # Generar un retiro aleatorio
+    with lock:
+        if balance.value >= withdraw_amount:
+            balance.value -= withdraw_amount
+            print(f"Process:{process} - Withdraw: {Fore.RED}${withdraw_amount:.2f}{Style.RESET_ALL}    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+        else:
+            print(f"Process:{process} - Withdraw: {Fore.YELLOW}${withdraw_amount:.2f}{Style.RESET_ALL} declined    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+
+def deposit_withdraw(balance, lock, process):
+    """Función para realizar 10 transacciones aleatorias (depósitos o retiros)."""
+    for _ in range(10):
+        # Seleccionar aleatoriamente si hacer un depósito o retiro
+        if random.choice([True, False]):
+            deposit(balance, lock, process)
+        else:
+            withdraw(balance, lock, process)
+
+if __name__ == "__main__":
+    multiprocessing.set_start_method('spawn')
+    num_cores = os.cpu_count()  # Obtener el número de núcleos de la CPU
+    
+    print(f"Number of cores: {num_cores}")
+
+    # Crear un valor compartido para el balance
+    balance = multiprocessing.Value('d', 100.0)  # 'd' es para float
+    lock = multiprocessing.Lock()  # Crear un candado para sincronización
+
+    print(f"Initial balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL} \n")
+
+    # Crear múltiples procesos
+    processes = []
+    for i in range(num_cores):
+        p = multiprocessing.Process(target=deposit_withdraw, args=(balance, lock, i+1))
+        processes.append(p)
+        p.start()
+
+    # Esperar a que todos los procesos terminen
+    for p in processes:
+        p.join()
+
+    # Imprimir balance final
+    print(f"\nFinal balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+
+
+
+-----------------------------------------------------------------------------------------
+"""import multiprocessing
+import random
+import os
+import time
+from colorama import Fore, Style, init
+
+# Inicializar colorama
+init(autoreset=True)
+
+def deposit(balance, lock, process):
+    """Función para realizar un depósito."""
+    deposit_amount = random.uniform(1, 100)  # Generar un depósito aleatorio
+    with lock:
+        balance.value += deposit_amount
+        print(f"Process:{process} - Deposit: {Fore.GREEN}${deposit_amount:.2f}{Style.RESET_ALL}    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+
+def withdraw(balance, lock, process):
+    """Función para realizar un retiro."""
+    withdraw_amount = random.uniform(1, 300)  # Generar un retiro aleatorio
+    with lock:
+        if balance.value >= withdraw_amount:
+            balance.value -= withdraw_amount
+            print(f"Process:{process} - Withdraw: {Fore.RED}${withdraw_amount:.2f}{Style.RESET_ALL}    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+        else:
+            print(f"Process:{process} - Withdraw: {Fore.YELLOW}${withdraw_amount:.2f}{Style.RESET_ALL} declined    Balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+
+def deposit_withdraw(balance, lock, process, transactions, transaction_count):
+    """Función para realizar transacciones aleatorias (depósitos o retiros)."""
+    for _ in range(transactions):
+        if random.choice([True, False]):
+            deposit(balance, lock, process)
+        else:
+            withdraw(balance, lock, process)
+        # Incrementar el número de transacciones realizadas por este proceso
+        transaction_count[process - 1] += 1
+
+if __name__ == "__main__":
+    multiprocessing.set_start_method('spawn')
+    num_cores = os.cpu_count()  # Obtener el número de núcleos de la CPU
+    
+    print(f"Number of cores: {num_cores}")
+
+    # Crear un valor compartido para el balance
+    initial_balance = 100.0
+    lock = multiprocessing.Lock()  # Crear un candado para sincronización
+    results = []  # Lista para almacenar las métricas
+
+    total_transactions = 1000  # Definir la cantidad total de transacciones a realizar
+
+    # Configuraciones progresivas de procesos (multiplicaciones de num_cores)
+    for factor in [1,2,4,8]:
+        num_processes = num_cores * factor
+        transactions_per_process = int(total_transactions / num_processes)  # Distribuir las transacciones entre los procesos
+        print(f"\nEjecutando con {num_processes} procesos - Cada proceso realizará {transactions_per_process} transacciones")
+
+        # Restablecer el balance a su valor inicial
+        balance = multiprocessing.Value('d', initial_balance)
+
+        # Crear una lista compartida para contar las transacciones por proceso
+        transaction_count = multiprocessing.Array('i', num_processes)
+
+        # Crear y ejecutar múltiples procesos
+        processes = []
+        start_time = time.time()  # Iniciar el cronómetro
+
+        for i in range(num_processes):
+            p = multiprocessing.Process(target=deposit_withdraw, args=(balance, lock, i+1, transactions_per_process, transaction_count))
+            processes.append(p)
+            p.start()
+
+        # Esperar a que todos los procesos terminen
+        for p in processes:
+            p.join()
+
+        end_time = time.time()  # Terminar el cronómetro
+
+        # Calcular métricas
+        total_time = end_time - start_time
+
+        # Guardar los resultados
+        results.append({
+            "num_processes": num_processes,
+            "final_balance": balance.value,
+            "total_time": total_time,
+        })
+
+        # Imprimir los resultados de esta configuración
+        print(f"Final balance: {Fore.BLUE}${balance.value:.2f}{Style.RESET_ALL}")
+        print(f"Tiempo total: {total_time:.2f} segundos")
+        
+        # Imprimir cuántas transacciones ejecutó cada proceso
+        print("\nTransacciones ejecutadas por cada proceso:")
+        for i in range(num_processes):
+            print(f"Proceso {i+1}: {transaction_count[i]} transacciones")
+
+    # Imprimir resumen de todas las configuraciones
+    print("\nResumen de métricas:")
+    for result in results:
+        print(f"Procesos: {result['num_processes']} - Balance final: ${result['final_balance']:.2f} - "
+              f"Tiempo total: {result['total_time']:.2f}s")"""

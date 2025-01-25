@@ -1,0 +1,38 @@
+a partir de la imagen de my sql crear una base de datos llamada inventario donde tenga una tabla producto que debe tener un ID único, nombre, descripción, precio y cantidad en stock, se podria añadir un serie de registros inciales de productos para no arrancar vacia . 
+
+todo esto al incializar el container 
+
+ademasa dame los comandos internos para entrara al container a validar la creacion de la base de datos y la tabla 
+
+ademas de la sere de peticiones donde agregue elimine o actuañice productos 
+
+nota el comando para incializar el container damelos en .bat y .sh 
+
+validar coneccion al puerto de la base de datos 
+netstat -an | find "3306"
+
+
+
+USE inventario;
+SHOW TABLES;
+
+SELECT * FROM producto;
+
+agregar un producto 
+INSERT INTO producto (nombre, descripcion, precio, stock) VALUES ('Tablet', 'Tablet Samsung Galaxy', 350.00, 18);
+
+delete
+DELETE FROM producto WHERE id = 3;  -- Eliminar el producto con ID 3
+
+update
+UPDATE producto SET stock = 25 WHERE id = 1;  -- Actualizar el stock del producto con ID 1
+
+
+
+
+compilar 
+javac -cp .:mysql-connector-java-8.0.30.jar Main.java
+
+ejecutar
+java -cp .:mysql-connector-java-8.0.30.jar Main
+

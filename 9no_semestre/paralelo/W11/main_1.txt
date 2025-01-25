@@ -1,0 +1,54 @@
+
+Producer 1 start..
+
+Producer 1 generated: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Producer 4 start..
+
+Producer 4 generated: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Producer 2 start..
+
+Producer 2 generated: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Producer 3 start..
+
+Producer 3 generated: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Producer 5 start..
+
+Producer 5 generated: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+
+Consumer 4 start...
+
+Consumer 4: Calculated the numbers [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]. Sum: 28
+
+Consumer 6 start...
+
+Consumer 6: Calculated the numbers [1, 1, 1, 1, 1, 1, 1]. Sum: 7
+
+Consumer 3 start...
+
+Consumer 3: Calculated the numbers [1]. Sum: 1
+
+Consumer 5 start...
+
+Consumer 5: Calculated the numbers [1]. Sum: 1
+
+Consumer 7 start...
+
+Consumer 7: Calculated the numbers [1]. Sum: 1
+
+Consumer 2 start...
+
+Consumer 2: Calculated the numbers [1]. Sum: 1
+
+Consumer 1 start...
+
+Consumer 1: Calculated the numbers [1, 1, 1, 1]. Sum: 4
+
+Consumer 8 start...
+
+Consumer 8: Calculated the numbers [1, 1, 1, 1, 1, 1, 1]. Sum: 7
+
+Main: Total sum: 50

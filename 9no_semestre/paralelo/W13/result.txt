@@ -1,0 +1,48 @@
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Extracting keywords...
+Detected 2 cores
+Fetching https://www.skysports.com/
+Fetching https://www.bbc.com/sport
+Fetching https://www.cnn.com/sport
+Status code: 200
+Fetching https://www.espn.com/
+Status code: 403
+Fetching https://www.foxnews.com/sports
+Status code: 200
+Fetching https://sports.yahoo.com/
+Status code: 200
+Fetching https://www.goal.com/
+Status code: 200
+Fetching https://www.nbcsports.com/
+Status code: 200
+Fetching https://www.si.com/
+Status code: 200
+Fetching https://www.bleacherreport.com/
+Status code: 200
+Fetching https://www.sportingnews.com/
+Status code: 200
+Fetching https://www.sbnation.com/
+Status code: 200
+Status code: 200
+Status code: 200
+Keywords extracted:
+cricket: 8
+rugby: 7
+golf: 33
+mma: 12
+hockey: 6
+fútbol: 7
+juegos: 1
+boxeo: 3
+tenis: 2
+Time taken: 8.58 seconds

@@ -1,0 +1,8 @@
+
+estadisticas 
+
+- tiempo promedio de busqueda 
+- tiempo promedio de extraccion de palabras clave
+- tiempo promedio de extraccion de palabras clave segun el tamaño del texto
+- punto marginal en el que el q no hay rango de mejora en el tiempo d ejecucion del experimento es decir la configuracion con el mejor tiempo de ejecucion 
+- frecuencia de palabras clave 

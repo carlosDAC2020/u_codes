@@ -1,0 +1,119 @@
+from PIL import Image
+import cv2
+import numpy as np
+import os
+from multiprocessing import Process, Queue
+
+# ------------------- Funciones de filtros -------------------
+
+def grayscale_conversion(image):
+    return image.convert("L")
+
+def edge_detection(image):
+    image_np = np.array(image)
+    gray = cv2.cvtColor(image_np, cv2.COLOR_RGB2GRAY)
+    edges = cv2.Canny(gray, 100, 200)
+    return Image.fromarray(edges)
+
+def blur(image):
+    ksize = 31
+    image_np = np.array(image)
+    blurred = cv2.GaussianBlur(image_np, (ksize, ksize), 0)
+    return Image.fromarray(blurred)
+
+# Manejador de tratamientos de imágenes
+treatments = {
+    "grayscale-conversion": {
+        "func": grayscale_conversion,
+        "queue_in": Queue(),
+        "queue_out": Queue()},
+    "edge-detection": {
+        "func": edge_detection,
+        "queue_in": Queue(),
+        "queue_out": Queue()},
+    "blurring": {
+        "func": blur,
+        "queue_in": Queue(),
+        "queue_out": Queue()},
+}
+
+# ------------------- Funciones de proceso -------------------
+
+def read_image(images_path, queues):
+    for image_file in os.listdir(images_path):
+        image_path = os.path.join(images_path, image_file)
+        if image_file.endswith(('.png', '.jpg', '.jpeg')):
+            print(f"Image Reader: Reading {image_file}...")
+            image = Image.open(image_path)
+            for queue in queues:
+                queue.put((image, image_file))  # Enviar la imagen a todas las colas
+
+    # Señal de finalización para todas las colas
+    for queue in queues:
+        queue.put(None)
+
+def process_image(queue_in, queue_out, treatment_key):
+    treatment = treatments[treatment_key]['func']
+    while True:
+        item = queue_in.get()
+        if item is None:
+            queue_out.put(None)  # Señal de finalización
+            break
+        image, image_file = item
+        print(f"Image Processor [{treatment_key}]")
+        processed_image = treatment(image)
+        queue_out.put((processed_image, image_file))
+
+def write_image(queue_out, output_dir, treatment_key):
+    output_path = os.path.join(output_dir, treatment_key)
+    os.makedirs(output_path, exist_ok=True)
+
+    while True:
+        item = queue_out.get()
+        if item is None:
+            break
+        processed_image, image_file = item
+        output_file = os.path.join(output_path, f"processed_{image_file}")
+        print(f"Image Writer [{treatment_key}]")
+        processed_image.save(output_file)
+
+# ------------------- Programa Principal -------------------
+
+if __name__ == "__main__":
+    images_path = "images"
+    output_dir = "output_images"
+
+    queues_in = [treatment["queue_in"] for treatment in treatments.values()]
+
+    reader_process = Process(target=read_image, args=(images_path, queues_in))
+    reader_process.start()
+
+    processes = []
+    for treatment_key, treatment in treatments.items():
+        queue_out = treatment["queue_out"]
+        queue_in = treatment["queue_in"]
+
+        process_treatment = Process(target=process_image, args=(queue_in, queue_out, treatment_key))
+        processes.append(process_treatment)
+
+        process_write = Process(target=write_image, args=(queue_out, output_dir, treatment_key))
+        processes.append(process_write)
+
+    for process in processes:
+        process.start()
+
+    reader_process.join()
+    for process in processes:
+        process.join()
+
+    print("Pipeline completado.")
+
+
+
+
+Imagen: ArtemisIICrewPoster~orig.png
+ Filtro: blurring
+ Tiempo: 9.4807 segundos
+ Tamaño: 192.6041 MB
+
+ 17.379.171 processed_ArtemisIICrewPoster~orig.png

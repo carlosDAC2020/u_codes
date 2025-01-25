@@ -2,3 +2,13 @@ venv
 *.csv
 *.pdf
 *-log
+*.xlsx
+*.png
+*.jpg
+.docker
+mysql_data
+mysql-connector-java-8.0.30
+*.jar
+*.gz
+*.class
+task_list

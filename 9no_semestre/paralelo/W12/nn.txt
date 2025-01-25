@@ -1,0 +1,39 @@
+ Imagen: GSFC_20171208_Archive_e000842~orig.jpg
+ Tamaño original: 12.380918502807617
+ Filtro: grayscale-conversion
+  Tamaño: 1.7443914413452148 MB
+  Tiempo: 0.039002180099487305 segundos
+ Filtro: edge-detection
+  Tamaño: 3.5049514770507812 MB
+  Tiempo: 1.062000036239624 segundos
+ Filtro: blurring
+  Tamaño: 0.7234516143798828 MB
+  Tiempo: 1.3983428478240967 segundos
+
+10 imágenes procesadas
+Pipeline completado.
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W12>cd output_images
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W12\output_images>cd blurring
+
+(venv) C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W12\output_images\blurring>dir
+ El volumen de la unidad C no tiene etiqueta.
+ El número de serie del volumen es: 7260-D476
+
+ Directorio de C:\Users\oruz2\OneDrive\Documentos\u_codes\9no_semestre\paralelo\W12\output_images\blurring
+
+18/10/2024  09:59 p. m.    <DIR>          .
+18/10/2024  09:59 p. m.    <DIR>          ..
+18/10/2024  09:59 p. m.        17.379.171 processed_ArtemisIICrewPoster~orig.png
+18/10/2024  09:59 p. m.           466.381 processed_behemoth-black-hole-found-in-an-unlikely-place_26209716511_o~orig.jpg
+18/10/2024  09:59 p. m.           106.593 processed_carina_nebula~large.jpg
+18/10/2024  09:59 p. m.           758.594 processed_GSFC_20171208_Archive_e000842~orig.jpg
+18/10/2024  09:59 p. m.           202.361 processed_GSFC_20171208_Archive_e001435~orig.jpg
+18/10/2024  09:59 p. m.           480.793 processed_GSFC_20171208_Archive_e001925~orig.jpg
+18/10/2024  09:59 p. m.           162.771 processed_hubble-captures-vivid-auroras-in-jupiters-atmosphere_28000029525_o~orig.jpg
+18/10/2024  09:59 p. m.           458.887 processed_KSC-20241003-PH-JBP01_0001~orig.jpg
+18/10/2024  09:59 p. m.            46.151 processed_PIA17669~orig.jpg
+18/10/2024  10:00 p. m.         2.445.026 processed_PIA18033~orig.jpg
+              10 archivos     22.506.728 bytes
+               2 dirs  34.378.235.904 bytes libres
